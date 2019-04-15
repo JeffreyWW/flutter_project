@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -20,7 +19,19 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Column(
-          children: <Widget>[TitleSection(), BtnSection()],
+          children: <Widget>[
+            Container(
+              color: Colors.red,
+              child: new Image.asset(
+                'images/banner.jpg',
+//                width: 111.0,
+//                height: 240.0,
+              fit: BoxFit.cover,
+              ),
+            ),
+            TitleSection(),
+            BtnSection()
+          ],
         ),
       ),
     );

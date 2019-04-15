@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
             Container(
               color: Colors.red,
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                 'images/banner.jpg',
 //                width: 111.0,
 //                height: 240.0,
-              fit: BoxFit.cover,
+                fit: BoxFit.cover,
               ),
             ),
             TitleSection(),
@@ -100,7 +100,9 @@ class BtnSection extends StatelessWidget {
       /*主轴对齐方式，Row则为平铺的方式*/
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        buildBtnColumn(Icons.call, "电话"),
+        GestureDetector(onTap: () {
+          print("点击了按钮");
+        }, child: buildBtnColumn(Icons.call, "电话")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
       ],

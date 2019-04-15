@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       home: new Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.red,
+          centerTitle: true,
           title: new Text(
             '这是个导航',
             style: TextStyle(fontSize: 15),
@@ -20,13 +21,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Column(
-          children: <Widget>[
-            TitleSection(),
-            new Text(
-              'Hello World',
-              textDirection: TextDirection.rtl,
-            ),
-          ],
+          children: <Widget>[TitleSection(), BtnSection()],
         ),
       ),
     );
@@ -64,6 +59,35 @@ class TitleSection extends StatelessWidget {
           Text("51"),
         ],
       ),
+    );
+  }
+}
+
+class BtnSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Column buildBtnColumn(IconData icon, String btnTitle) {
+      return Column(
+        children: <Widget>[
+          Icon(
+            icon,
+            color: Colors.red,
+          ),
+          Container(
+              child: Text(
+                btnTitle,
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w400),
+              ),
+              margin: EdgeInsets.only(top: 8)),
+        ],
+      );
+    }
+
+    return Row(
+      children: <Widget>[buildBtnColumn(Icons.call, "电话")],
     );
   }
 }

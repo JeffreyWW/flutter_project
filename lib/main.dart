@@ -7,19 +7,17 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      child: Container(
-//        padding: EdgeInsets.all(100),
-        margin: EdgeInsets.all(100),
-        color: Colors.red,
-        alignment: Alignment(1,1),
-        child: Text("Jeffrey", textDirection: TextDirection.rtl),
+    return new MaterialApp(
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Welcome to Flutt12er'),
+        ),
+        body: Row(
+          children: <Widget>[
+            new Text('Hello World'),
+          ],
+        ),
       ),
     );
-
-//    return Text('a 发',
-//        textDirection: TextDirection.rtl,
-//        style: new TextStyle(fontSize: 40.0, color: Colors.red));
   }
 }

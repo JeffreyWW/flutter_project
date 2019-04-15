@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -40,7 +39,7 @@ class TitleSection extends StatelessWidget {
           /*Expanded放在行或者列的里面再包含的元素会填充整个行或者列的剩余空间*/
           Expanded(
             child: Column(
-              /*crossAxisAlignment属性为行或者列的子元素对齐方式,默认是貌似是剧中*/
+              /*crossAxisAlignment属性为行或者列的子元素对齐方式,默认是貌似是剧中,次级轴*/
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
@@ -87,7 +86,13 @@ class BtnSection extends StatelessWidget {
     }
 
     return Row(
-      children: <Widget>[buildBtnColumn(Icons.call, "电话")],
+      /*主轴对齐方式，Row则为平铺的方式*/
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        buildBtnColumn(Icons.call, "电话"),
+        buildBtnColumn(Icons.near_me, "发送"),
+        buildBtnColumn(Icons.share, "分享"),
+      ],
     );
   }
 }

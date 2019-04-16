@@ -105,6 +105,20 @@ class BtnSection extends StatelessWidget {
         }, child: buildBtnColumn(Icons.call, "电话")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
+        //Feature分支
+        //Start Feature：从dev基础上fork一个新Feature分支，Feature只是类型，并不是说分支名字叫Feature，
+        // 这里需要把分支修改为合适的功能名，并提交到本地
+        //publish Feature：推送它到远程
+        //finish Feature ，先保证本地dev最新，然后合并到dev分支，并且需要删除掉这个feature分支，这里不需要手动去合并了（前提是先把本地变化提交）
+        //之后检查dev分支，没问题的话可以push，冲突什么的，需要在这里解决
+        //之后会回到dev分支，但是不允许在此基础上改代码，要么fork一个新的feature分支，要么fork一个Release分支
+        //之后一旦有新的功能则新建一个Feature分支，重复以上工作
+        //理论上feature就是dev分支，只是名字不同而已，最终完成后会删除，dev也将有这些改动的记录
+
+        //Release 一旦需要发布了（相当于要测试），则在dev基础上fork出一个Release分支，该分支只能做bug修复等附属工作
+        //给测试人员的包即从该分支打包测试
+
+
       ],
     );
   }

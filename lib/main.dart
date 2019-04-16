@@ -105,6 +105,10 @@ class BtnSection extends StatelessWidget {
         }, child: buildBtnColumn(Icons.call, "电话")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
+        //Start Feature一个新的名字的分支，publish则会推送它到远程
+        //finish Feature 则会合并到dev分支，这里不需要手动去合并了（前提是先把本地变化提交）
+
+
       ],
     );
   }

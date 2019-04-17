@@ -105,6 +105,15 @@ class BtnSection extends StatelessWidget {
         }, child: buildBtnColumn(Icons.call, "电话")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
+
+
+
+
+
+
+
+
+        //每个分支提交后只有被应用才能继续提交分支，不然就是不连续的
         //Feature分支
         //Start Feature：从dev基础上fork一个新Feature分支，Feature只是类型，并不是说分支名字叫Feature，
         // 这里需要把分支修改为合适的功能名，并提交到本地

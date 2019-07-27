@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_project/helloWorld.dart';
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+void main() => runApp(HelloWorld());
+
 
 /*框架强制app会铺满屏幕,即第一个Widget会铺满屏幕*/
 class MyApp extends StatelessWidget {

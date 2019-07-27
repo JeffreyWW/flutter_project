@@ -7,6 +7,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
 }
 
 class TitleSection extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,20 +102,16 @@ class BtnSection extends StatelessWidget {
       /*主轴对齐方式，Row则为平铺的方式*/
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        GestureDetector(onTap: () {
-          print("点击了按钮");
-        }, child: buildBtnColumn(Icons.call, "电话")),
+        GestureDetector(
+            onTap: () {
+              print("点击了按钮");
+            },
+            child: buildBtnColumn(Icons.call, "电话")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
-       //a
+        //a
         //b
         //c
-
-
-
-
-
-
 
         //每个分支提交后只有被应用才能继续提交分支，不然就是不连续的
         //Feature分支
@@ -129,8 +127,6 @@ class BtnSection extends StatelessWidget {
         //Release 一旦需要发布了（相当于要测试），则在dev基础上fork出一个Release分支，该分支只能做bug修复等附属工作
         //给测试人员的包即从该分支打包测试
         //change1,change2
-
-
       ],
     );
   }

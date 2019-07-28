@@ -1,23 +1,77 @@
+import 'dart:ui' as prefix0;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_project/helloWorld.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_project/views/home.dart';
 
-//void main() => runApp(MyApp());
-void main() => runApp(HelloWorld());
+void main() => runApp(JFApp());
 
+class A {
+  final String name;
+
+  A(this.name);
+}
+
+class JFApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _JFAppState();
+  }
+}
+
+class _JFAppState extends State<JFApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "我的",
+      theme: ThemeData(
+
+          ///文字主题
+          textTheme: TextTheme(
+
+              ///默认字体为body1
+              body1: TextStyle(color: Colors.red),
+              body2: TextStyle(color: Colors.blue)),
+
+          ///图标主题
+          iconTheme: IconThemeData(color: Colors.red, opacity: 0.5, size: 50)),
+      home: Scaffold(body: HomePage()),
+
+      ///显示网格线,默认false
+      debugShowMaterialGrid: false,
+
+      ///右上角的debug标志,默认true
+      debugShowCheckedModeBanner: false,
+    );
+
+    // TODO: implement build
+    return new Center(
+      child: Text(
+        "Jeff",
+        textDirection: TextDirection.ltr,
+      ),
+    );
+  }
+}
+
+//void main() => runApp(HelloWorld());
+//void main() => runApp(TestMaterialApp());
 
 /*框架强制app会铺满屏幕,即第一个Widget会铺满屏幕*/
 class MyApp extends StatelessWidget {
+  String _name = "Jeff";
+
   @override
   Widget build(BuildContext context) {
-
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.red,
           centerTitle: true,
           title: new Text(
-            '这是个导航',
+            '$_name',
             style: TextStyle(fontSize: 15),
             textAlign: TextAlign.center,
           ),
@@ -43,14 +97,13 @@ class MyApp extends StatelessWidget {
 }
 
 class TitleSection extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
       child: Row(
         //整行元素的对齐方式，下面注释取消掉则星星会顶到头部
-//        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           /*Expanded放在行或者列的里面再包含的元素会填充整个行或者列的剩余空间*/
           Expanded(
@@ -79,6 +132,8 @@ class TitleSection extends StatelessWidget {
 }
 
 class BtnSection extends StatelessWidget {
+  String test = "Jeffe";
+
   @override
   Widget build(BuildContext context) {
     Column buildBtnColumn(IconData icon, String btnTitle) {
@@ -107,9 +162,10 @@ class BtnSection extends StatelessWidget {
       children: <Widget>[
         GestureDetector(
             onTap: () {
-              print("点击了按钮");
+              print("lalll");
+              test = "lalala";
             },
-            child: buildBtnColumn(Icons.call, "电话")),
+            child: buildBtnColumn(Icons.call, "$test")),
         buildBtnColumn(Icons.near_me, "发送"),
         buildBtnColumn(Icons.share, "分享"),
         //a

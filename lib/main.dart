@@ -1,11 +1,7 @@
-import 'dart:ui' as prefix0;
-
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_project/routers/application.dart';
-import 'package:flutter_project/routers/routes.dart';
 import 'package:flutter_project/views/home.dart';
 
 
@@ -29,8 +25,6 @@ class JFApp extends StatefulWidget {
 class _JFAppState extends State<JFApp> {
   @override
   Widget build(BuildContext context) {
-    print("有路由:"+"$Application.router");
-
     return MaterialApp(
 //      title: "我的",
       theme: ThemeData(

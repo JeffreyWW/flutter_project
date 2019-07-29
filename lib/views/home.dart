@@ -19,32 +19,11 @@ class _HomePageState extends State {
   Widget build(BuildContext context) {
     return Center(
         child: FlatButton(
-      child: Text("J1"),
+      child: Text("J1",style: Theme.of(context).textTheme.body1,),
       onPressed: () {
-//        print("push");
-
-
-        Application.router.navigateTo(context, "test",transition: TransitionType.native);
-
-
-//        Navigator.push(context,
-//            MaterialPageRoute(builder: (BuildContext context) => Text("Jeff")));
-//        Navigator.pushNamed(context, "test").then((value) {
-//          print("动画结束");
-//        });
+        Application.router
+            .navigateTo(context, "test", transition: TransitionType.native);
       },
     ));
-  }
-}
-
-class _Demo extends StatelessWidget {
-  final name;
-
-  const _Demo({Key key, @required this.name}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Text(name);
   }
 }

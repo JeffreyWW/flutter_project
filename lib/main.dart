@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_project/routers/application.dart';
-import 'package:flutter_project/views/home.dart';
+import 'package:flutter_project/views/index.dart';
 
 
 void main() => runApp(JFApp());
 
-
+///App只定义配置,以及整个App的路由,主题等,然后关联一个主页面,主页面相当于tvc
 class JFApp extends StatefulWidget {
   JFApp() {
     ///所有配置用Application来配,内部则各自组建去自己配置
@@ -33,12 +33,12 @@ class _JFAppState extends State<JFApp> {
           textTheme: TextTheme(
 
               ///默认字体为body1
-              body1: TextStyle(color: Colors.red),
+              body1: TextStyle(color: Colors.blue),
               body2: TextStyle(color: Colors.blue)),
 
           ///图标主题
           iconTheme: IconThemeData(color: Colors.red, opacity: 0.5, size: 50)),
-      home: Scaffold(body: HomePage()),
+      home: Scaffold(body: MainPage()),
 //      routes: <String, WidgetBuilder>{"test": (c) => Text("ssssss")},
       onGenerateRoute: Application.router.generator,
 //      navigatorObservers: <NavigatorObserver>[Analytics.observer],

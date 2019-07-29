@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/routers/application.dart';
@@ -15,29 +16,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State {
   void clickTest() {
-    var list = [];
+    Application.router
+        .navigateTo(context, "blocTest", transition: TransitionType.native);
 
-    for (int i = 0; i < 1000; i++) {
-      list.add(i);
-    }
+//    return
 
-    Future getValue() {
-      return Future.error(Error());
-
-    }
-
-    getValue().then((v) => print(v)).catchError((e) => print(e));
-
-    print("结束");
-
-//    var httpClient = new HttpClient();
-//    var uri = Uri.parse("https://www.baidu.com");
-//    var uri = Uri.https("www.baidu.com", null);
-//    var request = httpClient.getUrl(uri);
-
-//    var request = httpClient.getUrl();
-
-    print("点我");
+//    var list = [];
+//
+//    for (int i = 0; i < 1000; i++) {
+//      list.add(i);
+//    }
+//
+//    Future getValue() {
+//      return Future.error(Error());
+//    }
+//
+//    getValue().then((v) => print(v)).catchError((e) => print(e));
+//
+//    print("结束");
+//
+////    var httpClient = new HttpClient();
+////    var uri = Uri.parse("https://www.baidu.com");
+////    var uri = Uri.https("www.baidu.com", null);
+////    var request = httpClient.getUrl(uri);
+//
+////    var request = httpClient.getUrl();
+//
+//    print("点我");
   }
 
   @override

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project/application.dart';
 import 'package:flutter_project/views/blocs/AppBloc.dart';
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
@@ -82,13 +83,20 @@ class _BlocPageState extends State {
           child: FlatButton(
             color: Colors.red,
             child: Text("clickMe"),
-            onPressed: () {},
+            onPressed: () {
+              Application.bloc.dispatch("Jeff");
+            },
           ),
         ),
-        Text("jeff"),
+        Text("blocTest"),
+        BlocBuilder<AppBloc, int>(
+          builder: (context, state) {
+            return Text(state.toString());
+          },
+        ),
         BlocBuilder(
           ///指定接收哪个bloc的数据流,相当于vm输入
-          bloc: AppBloc(),
+          bloc: Application.bloc,
           builder: (BuildContext context, state) {
             return Text(state.toString());
           },

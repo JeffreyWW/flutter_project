@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 
-class AppBloc extends Bloc {
+class AppBloc extends Bloc<String, int> {
   @override
-  get initialState => "Jeff";
+  get initialState => 5;
 
   @override
-  Stream mapEventToState(event) async* {
+  Stream<int> mapEventToState(event) async* {
     print(event);
-    yield 1;
+    yield currentState + 1;
   }
 }

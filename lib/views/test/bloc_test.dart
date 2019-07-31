@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project/views/blocs/AppBloc.dart';
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
 Stream<int> asyncTest() async* {
@@ -31,20 +32,14 @@ class TestBloc extends Bloc<String, int> {
   ///mapEventToState 必须将该event转换为新state，并以UI层使用的Stream形式返回新状态
   @override
   Stream<int> mapEventToState(String event) async* {
-    print("进来了1");
     yield currentState + 1;
-    print("进来了2");
     yield currentState + 1;
-    print("done");
-
   }
-
-  @override
 
   ///transform是一个 在调用mapEventToState之前 可以重写以转换 Stream<Event> .
   ///这允许使用distinct() 和 debounce() 的操作,个人感觉有点想flapMap
+  @override
   Stream<int> transform(Stream<String> events, Stream<int> next(String event)) {
-    print("转换");
     return super.transform(events, next);
   }
 
@@ -53,9 +48,7 @@ class TestBloc extends Bloc<String, int> {
   ///onTransition 在更新 bloc 状态之前 被调用。
   ///这是添加特定于块的日志记录/分析的好地方
   @override
-  void onTransition(Transition<String, int> transition) {
-    print(transition);
-  }
+  void onTransition(Transition<String, int> transition) {}
 }
 
 class BlocPage extends StatefulWidget {
@@ -68,7 +61,6 @@ class BlocPage extends StatefulWidget {
 class _BlocPageState extends State {
   final bloc = TestBloc();
 
-  int _count = 0;
   final _streamController = StreamController<int>();
 
   @override
@@ -77,23 +69,32 @@ class _BlocPageState extends State {
     super.dispose();
   }
 
-  void clickTest() {
-    bloc.dispatch("Jeff");
-  }
+  void clickTest() {}
 
   @override
   Widget build(BuildContext context) {
-    Widget steamTest = Center(
-        child: StreamBuilder(
-      stream: _streamController.stream,
-      initialData: 0,
-      builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-        return FlatButton(
-          child: Text(_count.toString()),
-          onPressed: clickTest,
-        );
-      },
-    ));
-    return Scaffold(body: steamTest);
+    Widget testWidget = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 100),
+          child: FlatButton(
+            color: Colors.red,
+            child: Text("clickMe"),
+            onPressed: () {},
+          ),
+        ),
+        Text("jeff"),
+        BlocBuilder(
+          ///指定接收哪个bloc的数据流,相当于vm输入
+          bloc: AppBloc(),
+          builder: (BuildContext context, state) {
+            return Text(state.toString());
+          },
+        )
+      ],
+    );
+    return Scaffold(body: testWidget);
   }
 }

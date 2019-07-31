@@ -3,18 +3,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_project/views/home_page/home_page.dart';
 import 'package:flutter_project/views/my_page/my_page.dart';
 
-class MainPage extends StatefulWidget {
+class IndexPage extends StatefulWidget {
   final String text;
 
-  const MainPage({Key key, this.text}) : super(key: key);
+  const IndexPage({Key key, this.text}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _MainPageState();
+    return _IndexPageState();
   }
 }
 
-class _MainPageState extends State {
+class _IndexPageState extends State {
   ///定义下标默认为0,以及对应的page和tabItems,逻辑需要自己写
   var _currentIndex = 0;
   static List<Widget> _pageList = [HomePage(), MyPage()];

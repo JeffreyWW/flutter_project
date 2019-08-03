@@ -27,6 +27,7 @@ dependencies:
   rxdart: ^0.22.1
   bloc: ^0.14.4
   flutter_bloc: ^0.20.0
+  dio: ^2.1.13
 
 dev_dependencies:
   flutter_test:

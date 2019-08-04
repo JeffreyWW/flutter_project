@@ -1,8 +1,7 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project/application.dart';
+import 'package:flutter_project/blocs/food/bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,22 +11,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State {
-  void clickTest() {
+  void clickTest() {}
+  final FoodBloc _foodBloc = FoodBloc();
 
+  @override
+  void initState() {
+    super.initState();
+    _foodBloc.dispatch(FoodGetEvent());
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Center(
-        child: FlatButton(
-          onPressed: () {
-            Application.router.navigateTo(context, "/blocTest",
-                transition: TransitionType.native);
-          },
-          child: Text("blocTest"),
-        ),
-      ),
-    );
+        body: BlocBuilder(
+            bloc: _foodBloc,
+            builder: (BuildContext context, FoodState state) {
+              var currentState = state as AllFoodLoaded;
+              return ListView.builder(
+                itemCount: currentState.foodList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var currentFood = currentState.foodList[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(currentFood.name),
+                      Text(currentFood.type.toString())
+                    ],
+                  );
+                },
+              );
+            }));
   }
 }

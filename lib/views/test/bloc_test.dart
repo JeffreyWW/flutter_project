@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
+import 'package:flutter_project/blocs/AppBloc.dart';
 import 'package:flutter_project/network/request.dart';
-import 'package:flutter_project/views/blocs/AppBloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
@@ -100,13 +100,13 @@ class _BlocPageState extends State {
             return Text(state.toString());
           },
         ),
-        BlocBuilder(
-          ///指定接收哪个bloc的数据流,相当于vm输入
-          bloc: Application.bloc,
-          builder: (BuildContext context, state) {
-            return Text(state.toString());
-          },
-        )
+//        BlocBuilder(
+//          ///指定接收哪个bloc的数据流,相当于vm输入
+//          bloc: Application.bloc,
+//          builder: (BuildContext context, state) {
+//            return Text(state.toString());
+//          },
+//        )
       ],
     );
     return Scaffold(body: testWidget);

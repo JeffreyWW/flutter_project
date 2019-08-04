@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
-import 'package:flutter_project/views/blocs/AppBloc.dart';
 import 'package:flutter_project/views/index.dart';
 
 void main() => runApp(BlocProvider(

@@ -23,6 +23,9 @@ class _HomePageState extends State {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        appBar: AppBar(
+          title: Text("食物列表"),
+        ),
         body: BlocBuilder(
             bloc: _foodBloc,
             builder: (BuildContext context, FoodState state) {

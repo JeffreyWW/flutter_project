@@ -1,25 +1,14 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
-import 'package:flutter_project/request/configure.dart';
+import 'package:flutter_project/network/request.dart';
 import 'package:flutter_project/views/blocs/AppBloc.dart';
 import 'package:rxdart/rxdart.dart';
-
-class T{
- final String name;
-
-  T(this.name);
-
-}
-
-
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
 Stream<int> asyncTest() async* {
@@ -84,12 +73,8 @@ class _BlocPageState extends State {
   }
 
   void clickTest() {
-    var dio = Dio();
-    config(dio: dio);
 
-    var response = dio.get("");
-    var ob = Observable.fromFuture(response);
-    ob.listen((r)=>print(("over")));
+    Observable.concat([Request.get("1")]);
 
   }
 

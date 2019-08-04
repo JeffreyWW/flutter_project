@@ -28,6 +28,7 @@ dependencies:
   bloc: ^0.14.4
   flutter_bloc: ^0.20.0
   dio: ^2.1.13
+  fluttertoast: ^3.1.0
 
 dev_dependencies:
   flutter_test:

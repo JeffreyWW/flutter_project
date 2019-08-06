@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
 import 'package:flutter_project/blocs/AppBloc.dart';
-import 'package:flutter_project/network/request.dart';
+import 'package:flutter_project/network/network_manager.dart';
 import 'package:rxdart/rxdart.dart';
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
@@ -74,7 +74,7 @@ class _BlocPageState extends State {
 
   void clickTest() {
 
-    Observable.concat([Request.get("1")]);
+    Observable.concat([NetworkManager.get("1")]);
 
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter_project/models/food.dart';
-import 'package:flutter_project/network/network_manager.dart';
+import 'package:flutter_project/network/index.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FoodRepositories {

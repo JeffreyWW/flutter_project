@@ -3,11 +3,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
-import 'package:flutter_project/network/network_manager.dart';
 import 'package:flutter_project/views/index.dart';
 
 void main() {
-  NetworkManager.configure(interceptor: MyInterceptor());
   runApp(BlocProvider(
     builder: (context) => Application.bloc,
     child: JFApp(),
@@ -35,10 +33,10 @@ class _JFAppState extends State<JFApp> {
 //      title: "我的",
       theme: ThemeData(
 
-        ///文字主题
+          ///文字主题
           textTheme: TextTheme(
 
-            ///默认字体为body1
+              ///默认字体为body1
               body1: TextStyle(color: Colors.blue),
               body2: TextStyle(color: Colors.blue)),
 

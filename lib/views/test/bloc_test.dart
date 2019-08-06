@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project/application.dart';
 import 'package:flutter_project/blocs/AppBloc.dart';
 import 'package:flutter_project/network/network_manager.dart';
 import 'package:rxdart/rxdart.dart';

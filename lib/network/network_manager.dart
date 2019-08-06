@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_project/network/network_coder.dart';
 import 'package:flutter_project/network/network_interceptors.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'network_config.dart';
 
 class NetworkManager {
-  static final Dio _dio = Dio(NetworkConfig.defaultOptions)
+  static final Dio _dio = Dio(NetworkConfig.defaultOptions
+      .merge(requestEncoder: NetworkCoder.requestEncoder))
     ..interceptors.add(InterceptorsWrapper(
         onRequest: NetworkInterceptors.onRequest,
         onResponse: NetworkInterceptors.onResponse,
@@ -17,7 +19,8 @@ class NetworkManager {
   }
 
   ///请求依靠dio,但会转为Observable
-  static Observable<Response<T>> post<T>(String path) {
-    return Observable.fromFuture(_dio.post(path));
+  static Observable<Response<T>> post<T>(String path, {data}) {
+    print("");
+    return Observable.fromFuture(_dio.post(path, data: data));
   }
 }

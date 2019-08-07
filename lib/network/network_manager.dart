@@ -20,7 +20,6 @@ class NetworkManager {
 
   ///请求依靠dio,但会转为Observable
   static Observable<Response<T>> post<T>(String path, {data}) {
-    print("");
     return Observable.fromFuture(_dio.post(path, data: data));
   }
 }

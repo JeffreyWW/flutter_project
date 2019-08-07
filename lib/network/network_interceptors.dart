@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_project/network/network_config.dart';
 
 ///监听模块,这里可以转换参数的传递
 class NetworkInterceptors {
   static onRequest(RequestOptions options) {
+    print("请求参数:");
     print(options.data);
-
   }
 
   static onResponse(Response response) {

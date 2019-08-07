@@ -17,7 +17,7 @@ class _HomePageState extends State {
   @override
   void initState() {
     super.initState();
-    _foodBloc.dispatch(FoodGetEvent());
+//    _foodBloc.dispatch(FoodGetEvent());
   }
 
   @override

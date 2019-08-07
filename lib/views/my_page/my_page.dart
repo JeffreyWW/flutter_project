@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_project/network/index.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -22,12 +22,11 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
         duration: const Duration(milliseconds: 500), vsync: this);
     controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        print("commeing");
         controller.reset();
         controller.forward();
       }
     });
-    controller.forward();
+//    controller.forward();
   }
 
   Widget getRotationTransitionWidget() {
@@ -39,7 +38,9 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
   }
 
   Widget sim() {
-    return SimpleDialog(children: <Widget>[],);
+    return SimpleDialog(
+      children: <Widget>[],
+    );
   }
 
   @override
@@ -49,11 +50,7 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
           child: FlatButton(
         child: Text("clicMe"),
         onPressed: () {
-          showDialog(
-              context: context,
-              builder: (c) {
-                return Text("Jeff");
-              });
+          NetworkManager.post("", data: {"name": "Jeff"});
         },
       )),
     );

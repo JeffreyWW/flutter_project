@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 ///监听模块
 class NetworkInterceptors {
   static onRequest(RequestOptions options) {
-    print('start request');
+    print(options.headers);
   }
 
   static onResponse(Response response) {

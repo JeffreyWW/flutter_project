@@ -1,9 +1,18 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 ///常规配置
 class NetworkConfig {
+  ///域名
   static const baseUrl = "https://www.baidu.com";
+
+  ///是否加密
+  static const isEncryptionEnabled = true;
+
+  ///请求为json格式,默认
+  static final contentType = ContentType.json;
 
   static get customHeader => {
         "appVersion": "2.1.4",
@@ -25,5 +34,5 @@ class NetworkConfig {
       };
 
   static get defaultOptions =>
-      BaseOptions(baseUrl: baseUrl, headers: customHeader);
+      BaseOptions(baseUrl: baseUrl, contentType: contentType);
 }

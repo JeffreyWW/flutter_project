@@ -24,11 +24,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   fluro: ^1.5.1
+  # rx系列
   rxdart: ^0.22.1
+  # business logic 新的设计模式
   bloc: ^0.14.4
   flutter_bloc: ^0.20.0
+  # flutter的AFN
   dio: ^2.1.13
+  # 一个建议的toast控件,但内部好像是用了原生代码,弄的插件形式
   fluttertoast: ^3.1.0
+  # 加解密,主要的rsa,aes都有
+  encrypt: ^3.2.0
 
 dev_dependencies:
   flutter_test:

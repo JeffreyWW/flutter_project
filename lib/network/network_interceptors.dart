@@ -12,7 +12,7 @@ class NetworkInterceptors {
   }
 
   static onError(DioError e) {
-    print("request error: $e");
+//    print("request error: $e");
   }
 
   static get customHeader => {

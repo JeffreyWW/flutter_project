@@ -3,13 +3,18 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter/services.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NetworkCoder {
+  static String _publicKey;
+
+  static Observable prepared = Observable.just(_publicKey.length>0);
+
+
   ///RSA证书
-  static const RSA_CER =
-      "-----BEGIN PUBLIC KEY-----"
+  static const RSA_CER = "-----BEGIN PUBLIC KEY-----"
       "MIICOzCCAaSgAwIBAgIEUDGSyDANBgkqhkiG9w0BAQUFADBiMQswCQYDVQQGEwJjbjEPMA0GA1UECBMGaHpiYW5rMQ8wDQYDVQQHEwZoemJhbmsxDzANBgNVBAoTBmh6YmFuazEPMA0GA1UECxMGaHpiYW5rMQ8wDQYDVQQDEwZoemJhbmswHhcNMTIwODIwMDEyODQwWhcNMTIxMTE4MDEyODQwWjBiMQswCQYDVQQGEwJjbjEPMA0GA1UECBMGaHpiYW5rMQ8wDQYDVQQHEwZoemJhbmsxDzANBgNVBAoTBmh6YmFuazEPMA0GA1UECxMGaHpiYW5rMQ8wDQYDVQQDEwZoemJhbmswgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAItFu7i17MUjaOf7aiSnJB3CbFu57IaUBSNZ/Tr1vSetgJn7Bqdg2RviGLB1x8/ckR2NUOwl4qSLxGpYBVXui/ALYJ3F1VhZ4kKWpwFYaCVqWwUgXwQ5F8hJuNkUllorJpwzX6MXw3et4dbVU5dNHMkTMh0gt8s0zqQGqNxDPi1PAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEANBMkpa5B2kAUHFnjmhWYlfmGUOUQO8GfJuk0VtgFHFTzDQ0aQvwXlE8xhdZ5ANFyrR779wLgE+12EJXbcT1ASpkuoTm6u5QkD49lKwAmiUVYPWRuhB3XF5ugsDuEAnL6/JfCo4gdLRPCzKxrPFHEoYkpetV7TrB9e0l/fWyi2Rw="
       "-----END PUBLIC KEY-----";
 
@@ -19,6 +24,11 @@ class NetworkCoder {
 
   ///AES的偏移
   static const _AES_IV = "1269571569321021";
+
+  printDailyNewsDigest() async {
+//    String news = await gatherNewsReports();
+//    print(news);
+  }
 
   ///数据header
   static get _dataHeader => {
@@ -50,18 +60,9 @@ class NetworkCoder {
 
     ///这个key需要给到后台的,但是是需要经过RSA加密
     print("222");
+//     String string = await rootBundle.loadString('keys/rsa.pem');
+
     var p = RSAKeyParser().parse(RSA_CER);
-    try {
-
-      var d = RSAKeyParser().parse(RSA_CER);
-      print(d);
-
-    } catch (e) {
-      print("aifl");
-
-      print(e);
-
-    }
 
     print(p);
 

@@ -6,33 +6,34 @@ import 'package:flutter/cupertino.dart';
 ///常规配置
 class NetworkConfig {
   ///域名
-  static const baseUrl = "https://www.baidu.com";
+  static const host = "http://103.238.145.134:20086/";
+//  static const host = "http://www.dfasdfadfasdfaasdf.com/";
+
+  ///api地址
+  static const apiUrl = "/byapp/open-gate/api/";
+
+  ///api分地址
+  static const baseUrl = host + apiUrl;
+
+  ///连接超时时间
+  static const connectTimeout = 8000;
+
+  ///响应超时时间
+  static const receiveTimeout = 8000;
 
   ///是否加密
-  static const isEncryptionEnabled = true;
+//  static const isEncryptionEnabled = true;
 
   ///请求为json格式,默认
   static final contentType = ContentType.json;
 
-  static get customHeader => {
-        "appVersion": "2.1.4",
-        "netWorkTypse": "WIFI",
-        "ipAddress": "fe80::9e:fe6b:15da:a1ca",
-        "mobileType": "iPhoneSimulator",
-        "deviceId": "4A9C4BFC7513AD9D7EE0C27E93F951E1",
-        "sysVersion": "12.2",
-        "resolution": "1242*2208",
-        "platform": "iPhone",
-        "channel": "10001003",
-        "locationInfo": {},
-        "iCIFID": "ynet",
-        "mp_sId": "ynet",
-        "userId": "",
-        "device_id": "ynet",
-        "fingerprint": "",
-        "channelNo": "1",
-      };
+  ///自定义请求头,algrithm为支持的加密算法,就应该写死,支持了加上就是
+  static get customHeader => {"X-Flame-Encrypt-Accept": "algrithm=0"};
 
-  static get defaultOptions =>
-      BaseOptions(baseUrl: baseUrl, contentType: contentType);
+  static get defaultOptions => BaseOptions(
+          baseUrl: baseUrl,
+          contentType: contentType,
+          receiveTimeout: receiveTimeout,
+          connectTimeout: connectTimeout)
+      .merge(headers: customHeader);
 }

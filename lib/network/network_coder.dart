@@ -21,8 +21,7 @@ class NetworkCoder {
   static const _AES_IV = "1269571569321021";
 
   ///数据header
-  static get _dataHeader =>
-      {
+  static get _dataHeader => {
         "appVersion": "2.1.4",
         "netWorkTypse": "WIFI",
         "ipAddress": "fe80::9e:fe6b:15da:a1ca",
@@ -43,10 +42,7 @@ class NetworkCoder {
 
   static List<int> requestEncoder(String request, RequestOptions options) {
     ///请求时间
-    var requestTime = DateTime
-        .now()
-        .millisecondsSinceEpoch
-        .toString();
+    var requestTime = DateTime.now().millisecondsSinceEpoch.toString();
 
     ///httpBody里面的header字段
     var httpBodyHeader = {"channel": "AT", "requestTime": requestTime};
@@ -55,35 +51,38 @@ class NetworkCoder {
     var localData = {"header": _dataHeader, "body": options.data};
 
     ///数据的jsonString+channel+requestTime,然后md5转小写,最后base64
-    var sign = Encrypted
-        .fromUtf8(md5
-        .convert(utf8.encode(json.encode(localData) + "AT" + requestTime))
-        .toString()
-        .toLowerCase())
+    var sign = Encrypted.fromUtf8(md5
+            .convert(utf8.encode(json.encode(localData) + "AT" + requestTime))
+            .toString()
+            .toLowerCase())
         .base64;
 
     ///随机生成16位的aes的key
     var aesKey =
-    List.generate(16, (index) => Random().nextInt(9).toString()).join();
+        List.generate(16, (index) => Random().nextInt(9).toString()).join();
 
     ///把key通过rsa加密并转成base64给后台,后台会有私有去解密得到aes的key
-    var encryptKey = _rsaEncrypter
-        .encrypt(aesKey)
-        .base64;
+    var encryptKey = _rsaEncrypter.encrypt(aesKey).base64;
 
     ///最后本地数据需要经过aes加密,aes加密目前没有问题,iv则是固定值,最后转成base64字符串
     var encryptVal = AES(Key(utf8.encode(aesKey)), mode: AESMode.cbc)
         .encrypt(utf8.encode(json.encode(localData)),
-        iv: IV(utf8.encode(_AES_IV)))
+            iv: IV(utf8.encode(_AES_IV)))
         .base64;
     var httpBodyBody = {
       "sign": sign,
       "encryptKey": encryptKey,
       "encryptVal": encryptVal
     };
-
     var httpBody = {"header": httpBodyHeader, "body": httpBodyBody};
-    print(httpBody);
     return JsonUtf8Encoder().convert(httpBody);
+  }
+
+  static String responseDecoder(List<int> responseBytes, RequestOptions options,
+      ResponseBody responseBody) {
+    var res = utf8.decode(responseBytes);
+    print(res);
+
+    return "1";
   }
 }

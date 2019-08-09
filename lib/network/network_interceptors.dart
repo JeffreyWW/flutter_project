@@ -12,6 +12,8 @@ class NetworkInterceptors {
   }
 
   static onError(DioError e) {
+    print("服务器都没返回");
+
 //    print("request error: $e");
   }
 

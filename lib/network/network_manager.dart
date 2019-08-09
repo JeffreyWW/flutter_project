@@ -6,6 +6,10 @@ import 'package:rxdart/rxdart.dart';
 import 'network_config.dart';
 
 class NetworkManager {
+  static configure() async {
+    await NetworkCoder.configure();
+  }
+
   static final Dio _dio = Dio(NetworkConfig.defaultOptions
       .merge(requestEncoder: NetworkCoder.requestEncoder))
     ..interceptors.add(InterceptorsWrapper(

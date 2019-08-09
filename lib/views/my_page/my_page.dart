@@ -55,4 +55,5 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
       )),
     );
   }
+
 }

@@ -3,19 +3,13 @@ import 'package:dio/dio.dart';
 ///监听模块,这里可以转换参数的传递
 class NetworkInterceptors {
   static onRequest(RequestOptions options) {
-    print("请求参数:");
-    print(options.data);
   }
 
   static onResponse(Response response) {
-    print("response is :$response");
+
   }
 
-  static onError(DioError e) {
-    print("服务器都没返回");
-
-//    print("request error: $e");
-  }
+  static onError(DioError error) {}
 
   static get customHeader => {
         "appVersion": "2.1.4",

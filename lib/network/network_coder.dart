@@ -18,7 +18,7 @@ class NetworkCoder {
   }
 
   ///AES的偏移
-  static const _AES_IV = "1269571569321021";
+  static final IV _aesIV = IV(utf8.encode("1269571569321021"));
 
   ///数据header
   static get _dataHeader => {
@@ -41,6 +41,8 @@ class NetworkCoder {
       };
 
   static List<int> requestEncoder(String request, RequestOptions options) {
+    print("22222");
+
     ///请求时间
     var requestTime = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -66,8 +68,7 @@ class NetworkCoder {
 
     ///最后本地数据需要经过aes加密,aes加密目前没有问题,iv则是固定值,最后转成base64字符串
     var encryptVal = AES(Key(utf8.encode(aesKey)), mode: AESMode.cbc)
-        .encrypt(utf8.encode(json.encode(localData)),
-            iv: IV(utf8.encode(_AES_IV)))
+        .encrypt(utf8.encode(json.encode(localData)), iv: _aesIV)
         .base64;
     var httpBodyBody = {
       "sign": sign,
@@ -80,9 +81,47 @@ class NetworkCoder {
 
   static String responseDecoder(List<int> responseBytes, RequestOptions options,
       ResponseBody responseBody) {
-    var res = utf8.decode(responseBytes);
-    print(res);
+    ///返回的json
+    var gateWayResponse = json.decode(utf8.decode(responseBytes));
 
-    return "1";
+    ///网关的header,包含errorCode和errorMsg
+    var gateWayHeader = gateWayResponse["header"];
+    var gateWayBody = gateWayResponse["body"];
+
+    ///返回的body里面去出X-Flame-Encrypt字段,用;隔开取后段,再去key=后端,拿到base64的一个字符串,还原,得到加密后的aesKey
+    var aesEndryptedKey = utf8.decode(Encrypted.fromBase64(
+            (gateWayBody["X-Flame-Encrypt"] as String)
+                .split(";")
+                .last
+                .split("key=")
+                .last)
+        .bytes);
+    var aesKeyList = [];
+
+    ///缝3不要,算是个简单解密,拿到aes的key
+    for (int i = 0; i < aesEndryptedKey.length; i++) {
+      if (i > 0 && i % 3 == 0) {
+      } else {
+        aesKeyList.add(aesEndryptedKey[i]);
+      }
+    }
+
+    ///解密,拿到encryptVal字段,但是后台还会返回header和body字段,header里面会有errorCode和errorMsg,其它的都是之前给过的信息,算是业务层的错误
+    var encryptVal = json.decode(utf8.decode(
+        AES(Key(utf8.encode(aesKeyList.join())), mode: AESMode.cbc).decrypt(
+            Encrypted.fromBase64(gateWayBody["encryptVal"]),
+            iv: _aesIV)));
+    //    print(encryptVal);   }
+    var finalResponse = {
+      ///网关头部,直接返回的
+      "header": gateWayHeader,
+
+      ///数据,里面也有header和body,后台反的
+      "body": encryptVal,
+    };
+
+    return json.encode(finalResponse);
   }
 }
+
+class CustomError implements Exception {}

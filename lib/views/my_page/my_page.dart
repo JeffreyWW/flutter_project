@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -51,7 +52,11 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
         child: Text("clicMe"),
         onPressed: () {
           NetworkManager.post("/MC0011.do",
-              data: {"userNo": "", "pageType": "00"});
+              data: {"userNo": "", "pageType": "00"}).listen((res) {
+            print(res.data["body"]["body"]);
+          }, onError: (e) {
+            print(e.runtimeType.toString());
+          });
         },
       )),
     );

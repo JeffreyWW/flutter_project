@@ -10,8 +10,9 @@ class NetworkManager {
     await NetworkCoder.configure();
   }
 
-  static final Dio _dio = Dio(NetworkConfig.defaultOptions
-      .merge(requestEncoder: NetworkCoder.requestEncoder))
+  static final Dio _dio = Dio(NetworkConfig.defaultOptions.merge(
+      requestEncoder: NetworkCoder.requestEncoder,
+      responseDecoder: NetworkCoder.responseDecoder))
     ..interceptors.add(InterceptorsWrapper(
         onRequest: NetworkInterceptors.onRequest,
         onResponse: NetworkInterceptors.onResponse,

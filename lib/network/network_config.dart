@@ -6,8 +6,8 @@ import 'package:flutter/cupertino.dart';
 ///常规配置
 class NetworkConfig {
   ///域名
-  static const host = "http://103.238.145.134:20086/";
-//  static const host = "http://www.dfasdfadfasdfaasdf.com/";
+//  static const host = "http://103.238.145.134:20086/";
+  static const host = "http://www.dfasdfadfasdfaasdf.com/";
 
   ///api地址
   static const apiUrl = "/byapp/open-gate/api/";

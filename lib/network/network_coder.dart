@@ -41,8 +41,6 @@ class NetworkCoder {
       };
 
   static List<int> requestEncoder(String request, RequestOptions options) {
-    print("22222");
-
     ///请求时间
     var requestTime = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -111,7 +109,6 @@ class NetworkCoder {
         AES(Key(utf8.encode(aesKeyList.join())), mode: AESMode.cbc).decrypt(
             Encrypted.fromBase64(gateWayBody["encryptVal"]),
             iv: _aesIV)));
-    //    print(encryptVal);   }
     var finalResponse = {
       ///网关头部,直接返回的
       "header": gateWayHeader,

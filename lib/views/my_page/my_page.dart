@@ -55,7 +55,7 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
               data: {"userNo": "", "pageType": "00"}).listen((res) {
             print(res.data["body"]["body"]);
           }, onError: (e) {
-            print(e.runtimeType.toString());
+            print(e);
           });
         },
       )),

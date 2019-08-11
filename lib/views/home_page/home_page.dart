@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
 
@@ -50,9 +51,40 @@ class _HomePageState extends State {
           ));
     }
 
+    Widget card(BuildContext context) {
+
+      return Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+//        margin: EdgeInsets.all(15),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
+          child: Column(
+            children: <Widget>[
+              Text("Jeff"),
+              Center(
+                child: Text(
+                  '200,000,00',
+                  style:
+                      TextStyle(fontSize: 30, fontFamily: "PingFangSC-Regular"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Divider(color: Colors.black,indent: 50,endIndent: 50,),
+              )
+
+            ],
+          ),
+        ),
+//        color: Colors.blue,
+      );
+    }
+
     return Container(
       child: SafeArea(
         child: Column(
+//          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             navigationBar(),
             Padding(
@@ -75,7 +107,8 @@ class _HomePageState extends State {
                   ),
                 ],
               ),
-            )
+            ),
+            Container(child: card(context))
           ],
         ),
       ),
@@ -107,4 +140,3 @@ class _HomePageState extends State {
             }));
   }
 }
-

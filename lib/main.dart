@@ -43,8 +43,9 @@ class _JFAppState extends State<JFApp> {
         ///文字主题
         textTheme: TextTheme(
             title: TextStyle(color: Colors.white, fontSize: 24),
+
             ///默认字体为body1
-            body1: TextStyle(color: Colors.blue),
+            body1: TextStyle(color: Colors.black),
             body2: TextStyle(color: Colors.blue)),
       ),
       home: Scaffold(body: IndexPage()),

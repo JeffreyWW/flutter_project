@@ -19,59 +19,37 @@ class _HomePageState extends State {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        body: BlocBuilder(
-            bloc: _foodBloc,
-            builder: (BuildContext context, FoodState state) {
-              return ListView.builder(
-                padding: EdgeInsets.only(top: 0),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == 0) {
-                    return _HomeHeader();
-                  }
-
-                  return Text("Jeff");
+  ///头部
+  Widget _headerView(BuildContext context) {
+    Widget navigationBar() {
+      return Container(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          height: 44,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: ImageIcon(
+                  AssetImage("assets/nav_listen.png"),
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  print("点击");
                 },
-              );
-            }));
-  }
-}
-
-class _HomeHeader extends StatelessWidget {
-  Widget navigationBar() {
-    return Container(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        height: 44,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              icon: ImageIcon(
-                AssetImage("assets/nav_listen.png"),
-                color: Colors.white,
               ),
-              onPressed: () {
-                print("点击");
-              },
-            ),
-            IconButton(
-              icon: ImageIcon(
-                AssetImage("assets/nav_message.png"),
-                color: Colors.white,
+              IconButton(
+                icon: ImageIcon(
+                  AssetImage("assets/nav_message.png"),
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  print("点击2");
+                },
               ),
-              onPressed: () {
-                print("点击2");
-              },
-            ),
-          ],
-        ));
-  }
+            ],
+          ));
+    }
 
-  @override
-  Widget build(BuildContext context) {
     return Container(
       child: SafeArea(
         child: Column(
@@ -108,4 +86,25 @@ class _HomeHeader extends StatelessWidget {
               fit: BoxFit.cover)),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        body: BlocBuilder(
+            bloc: _foodBloc,
+            builder: (BuildContext context, FoodState state) {
+              return ListView.builder(
+                padding: EdgeInsets.only(top: 0),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == 0) {
+                    return _headerView(context);
+                  }
+
+                  return Text("Jeff");
+                },
+              );
+            }));
+  }
 }
+

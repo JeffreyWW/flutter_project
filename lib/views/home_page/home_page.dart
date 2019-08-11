@@ -20,27 +20,30 @@ class _HomePageState extends State {
 //    _foodBloc.dispatch(FoodGetEvent());
   }
 
+  Widget getHeader() {
+    return Container(
+//      child: Text("sdfsdfsdfsdfsdf"),
+      decoration: BoxDecoration(
+          image:
+              DecorationImage(image: AssetImage("assets/bg_home_headerA.png"))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-          title: Text("食物列表"),
-        ),
         body: BlocBuilder(
             bloc: _foodBloc,
             builder: (BuildContext context, FoodState state) {
-              var currentState = state as AllFoodLoaded;
               return ListView.builder(
-                itemCount: currentState.foodList.length,
+                padding: EdgeInsets.only(top: 0),
+                itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
-                  var currentFood = currentState.foodList[index];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(currentFood.name),
-                      Text(currentFood.type.toString())
-                    ],
-                  );
+                  if (index == 0) {
+                    return getHeader();
+                  }
+
+                  return Text("Jeff");
                 },
               );
             }));

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
 
@@ -52,32 +53,70 @@ class _HomePageState extends State {
     }
 
     Widget card(BuildContext context) {
+      Widget number() {
+        return Center(
+          child: Text(
+            '200,000,00',
+            style: TextStyle(fontSize: 30, fontFamily: "PingFangSC-Regular"),
+          ),
+        );
+      }
 
-      return Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12))),
-//        margin: EdgeInsets.all(15),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
-          child: Column(
+      Widget divider() {
+        return Divider(
+          color: Colors.black,
+          indent: 50,
+          endIndent: 50,
+        );
+      }
+
+      Padding descriptionElements(String message, String imagePtah) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: Row(
             children: <Widget>[
-              Text("Jeff"),
-              Center(
-                child: Text(
-                  '200,000,00',
-                  style:
-                      TextStyle(fontSize: 30, fontFamily: "PingFangSC-Regular"),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Image(
+                  image: AssetImage(imagePtah),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Divider(color: Colors.black,indent: 50,endIndent: 50,),
-              )
-
+              Text(message),
             ],
           ),
-        ),
+        );
+      }
+
+      Widget descriptions() {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            descriptionElements("秒级到账", "assets/icon_shak.png"),
+            descriptionElements("极速审批", "assets/icon_money.png"),
+          ],
+        );
+      }
+
+      return Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+//        margin: EdgeInsets.all(15),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
+            child: Column(
+              children: <Widget>[
+                cardFirstSection(),
+                number(),
+                Padding(
+                    padding: const EdgeInsets.only(top: 20), child: divider()),
+                descriptions()
+              ],
+            ),
+          ),
 //        color: Colors.blue,
+        ),
       );
     }
 
@@ -120,8 +159,30 @@ class _HomePageState extends State {
     );
   }
 
+  Row cardFirstSection() {
+    return Row(
+      children: <Widget>[
+        Container(
+            alignment: Alignment.centerLeft,
+            width: 111,
+            height: 22,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    alignment: Alignment.centerLeft,
+                    fit: BoxFit.fitHeight,
+                    image: AssetImage("assets/bg_title.png"))),
+            child: Text(
+              'E点贷',
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ))
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
     return new Scaffold(
         body: BlocBuilder(
             bloc: _foodBloc,

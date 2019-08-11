@@ -51,6 +51,7 @@ class _HomeHeader extends StatelessWidget {
             IconButton(
               icon: ImageIcon(
                 AssetImage("assets/nav_listen.png"),
+                color: Colors.white,
               ),
               onPressed: () {
                 print("点击");
@@ -59,6 +60,7 @@ class _HomeHeader extends StatelessWidget {
             IconButton(
               icon: ImageIcon(
                 AssetImage("assets/nav_message.png"),
+                color: Colors.white,
               ),
               onPressed: () {
                 print("点击2");
@@ -73,7 +75,30 @@ class _HomeHeader extends StatelessWidget {
     return Container(
       child: SafeArea(
         child: Column(
-          children: <Widget>[navigationBar()],
+          children: <Widget>[
+            navigationBar(),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Image(
+                      image: AssetImage("assets/logo.png"),
+                      height: 24.5,
+                      width: 24.5,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Text(
+                    "北银消费金融",
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
       height: 400,

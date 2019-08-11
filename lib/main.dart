@@ -42,7 +42,7 @@ class _JFAppState extends State<JFApp> {
       theme: ThemeData(
         ///文字主题
         textTheme: TextTheme(
-
+            title: TextStyle(color: Colors.white, fontSize: 24),
             ///默认字体为body1
             body1: TextStyle(color: Colors.blue),
             body2: TextStyle(color: Colors.blue)),

@@ -50,7 +50,11 @@ flutter:
   assets:
     - images/
     - keys/rsa.pem
+  # home
     - assets/bg_home_headerA.png
+    - assets/iPhoneX/bg_home_headerA.png
+    - assets/nav_listen.png
+    - assets/nav_message.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

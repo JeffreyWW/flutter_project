@@ -17,16 +17,6 @@ class _HomePageState extends State {
   @override
   void initState() {
     super.initState();
-//    _foodBloc.dispatch(FoodGetEvent());
-  }
-
-  Widget getHeader() {
-    return Container(
-//      child: Text("sdfsdfsdfsdfsdf"),
-      decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage("assets/bg_home_headerA.png"))),
-    );
   }
 
   @override
@@ -40,12 +30,57 @@ class _HomePageState extends State {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   if (index == 0) {
-                    return getHeader();
+                    return _HomeHeader();
                   }
 
                   return Text("Jeff");
                 },
               );
             }));
+  }
+}
+
+class _HomeHeader extends StatelessWidget {
+  Widget navigationBar() {
+    return Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        height: 44,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: ImageIcon(
+                AssetImage("assets/nav_listen.png"),
+              ),
+              onPressed: () {
+                print("点击");
+              },
+            ),
+            IconButton(
+              icon: ImageIcon(
+                AssetImage("assets/nav_message.png"),
+              ),
+              onPressed: () {
+                print("点击2");
+              },
+            ),
+          ],
+        ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: SafeArea(
+        child: Column(
+          children: <Widget>[navigationBar()],
+        ),
+      ),
+      height: 400,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/bg_home_headerA.png"),
+              fit: BoxFit.cover)),
+    );
   }
 }

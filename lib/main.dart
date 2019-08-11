@@ -40,16 +40,13 @@ class _JFAppState extends State<JFApp> {
     return MaterialApp(
 //      title: "我的",
       theme: ThemeData(
+        ///文字主题
+        textTheme: TextTheme(
 
-          ///文字主题
-          textTheme: TextTheme(
-
-              ///默认字体为body1
-              body1: TextStyle(color: Colors.blue),
-              body2: TextStyle(color: Colors.blue)),
-
-          ///图标主题
-          iconTheme: IconThemeData(color: Colors.red, opacity: 0.5, size: 50)),
+            ///默认字体为body1
+            body1: TextStyle(color: Colors.blue),
+            body2: TextStyle(color: Colors.blue)),
+      ),
       home: Scaffold(body: IndexPage()),
       onGenerateRoute: Application.router.generator,
     );

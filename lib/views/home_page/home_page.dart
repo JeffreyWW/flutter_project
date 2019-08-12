@@ -57,7 +57,7 @@ class _HomePageState extends State {
         return Center(
           child: Text(
             '200,000,00',
-            style: TextStyle(fontSize: 30, fontFamily: "PingFangSC-Regular"),
+            style: TextStyle(fontSize: 30, fontFamily: "DIN Alternate"),
           ),
         );
       }

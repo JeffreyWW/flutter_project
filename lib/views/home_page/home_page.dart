@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -17,14 +20,19 @@ class _HomePageState extends State {
   void clickTest() {}
   final FoodBloc _foodBloc = FoodBloc();
   var scrollController = ScrollController();
+  var streamController = StreamController<double>();
 
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(() {
-//
-      print(scrollController.offset);
-    });
+    scrollController
+        .addListener(() => streamController.sink.add(scrollController.offset));
+  }
+
+  @override
+  void dispose() {
+    streamController.close();
+    super.dispose();
   }
 
   ///头部
@@ -149,17 +157,31 @@ class _HomePageState extends State {
     return Container(
       child: Stack(
         children: <Widget>[
-          Positioned(
-            left: 0,
-            right: 0,
-            child: Transform.scale(
-              scale: 1,
-              child: Image(
-                width: 500,
-                fit: BoxFit.fill,
-                image: AssetImage("assets/bg_home_headerA.png"),
-              ),
-            ),
+          StreamBuilder<double>(
+            initialData: 0,
+            stream: streamController.stream,
+            builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+              var scale = 1.0;
+
+              ///偏移距离
+              var distance = -snapshot.data;
+
+              ///实际高度
+              var realHeight = 375.0 * 948.0 / 1125.0;
+
+              ///放大后应该是上下都增加了移动的距离,放大倍数则除以原始高度即可,反向则置为1
+              scale =
+                  distance > 0 ? (realHeight + 2 * distance) / realHeight : 1;
+              return Positioned(
+                  left: 0,
+                  right: 0,
+                  child: Transform.scale(
+                    scale: scale,
+                    child: Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/bg_home_headerA.png')),
+                  ));
+            },
           ),
           SafeArea(
             child: Column(

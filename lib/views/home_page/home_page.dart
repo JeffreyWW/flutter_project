@@ -114,12 +114,8 @@ class _HomePageState extends State {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            descriptionElements("秒级到账", "assets/icon_shak.png"),
-            Builder(
-              builder: (BuildContext context) {
-                return Text("Jeff");
-              },
-            )
+            descriptionElements("秒级到账", "assets/icon_money.png"),
+            descriptionElements("极速审批", "assets/icon_shak.png"),
           ],
         );
       }

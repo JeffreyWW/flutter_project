@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
+import 'package:flutter_project/utils/color.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -55,16 +56,22 @@ class _HomePageState extends State {
     Widget card(BuildContext context) {
       Widget number() {
         return Center(
-          child: Text(
-            '200,000,00',
-            style: TextStyle(fontSize: 30, fontFamily: "DIN Alternate"),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 17),
+            child: Text(
+              '200,000,00',
+              style: TextStyle(
+                  fontSize: 40,
+                  fontFamily: "DIN Alternate",
+                  color: HexColor("#333333")),
+            ),
           ),
         );
       }
 
       Widget divider() {
         return Divider(
-          color: Colors.black,
+          color: HexColor("#E6E6E6"),
           indent: 50,
           endIndent: 50,
         );
@@ -81,7 +88,10 @@ class _HomePageState extends State {
                   image: AssetImage(imagePtah),
                 ),
               ),
-              Text(message),
+              Text(
+                message,
+                style: TextStyle(fontSize: 12, color: HexColor("#666666")),
+              ),
             ],
           ),
         );
@@ -98,22 +108,29 @@ class _HomePageState extends State {
       }
 
       return Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.fromLTRB(16, 31, 16, 0),
         child: Card(
+          elevation: 2,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(12))),
 //        margin: EdgeInsets.all(15),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
-            child: Column(
-              children: <Widget>[
-                cardFirstSection(),
-                number(),
-                Padding(
-                    padding: const EdgeInsets.only(top: 20), child: divider()),
-                descriptions()
-              ],
-            ),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 19),
+                child: cardFirstSection(),
+              ),
+              number(),
+              Padding(
+                  padding: const EdgeInsets.only(top: 15), child: divider()),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 21),
+                  child: descriptions(),
+                ),
+              )
+            ],
           ),
 //        color: Colors.blue,
         ),
@@ -140,10 +157,9 @@ class _HomePageState extends State {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                    "北银消费金融",
-                    style: Theme.of(context).textTheme.title,
-                  ),
+                  Text("北银消费金融",
+                      style:
+                          TextStyle(fontSize: 24, color: HexColor("#FFFFFF"))),
                 ],
               ),
             ),
@@ -163,18 +179,46 @@ class _HomePageState extends State {
     return Row(
       children: <Widget>[
         Container(
-            alignment: Alignment.centerLeft,
-            width: 111,
-            height: 22,
+            alignment: Alignment(-0.3, 0),
+            width: 58,
+            height: 25,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     alignment: Alignment.centerLeft,
                     fit: BoxFit.fitHeight,
                     image: AssetImage("assets/bg_title.png"))),
             child: Text(
-              'E点贷',
+              'e点贷',
               style: TextStyle(color: Colors.white, fontSize: 14),
-            ))
+            )),
+        Padding(
+          padding: const EdgeInsets.only(left: 11),
+          child: Text(
+            '可用额度(元)',
+            style: TextStyle(fontSize: 14, color: HexColor("#666666")),
+          ),
+        ),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: Container(
+              width: 100,
+              height: 30,
+              alignment: Alignment.centerRight,
+              child: OutlineButton(
+                borderSide: BorderSide(color: Colors.red, width: 0.5),
+                color: Colors.red,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                onPressed: () {
+                  print("1");
+                },
+                child: Text(
+                  "去还款",
+                  style: TextStyle(fontSize: 16, color: HexColor("#F23030")),
+                ),
+              )),
+        ))
       ],
     );
   }

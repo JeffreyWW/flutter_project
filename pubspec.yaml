@@ -35,6 +35,7 @@ dependencies:
   fluttertoast: ^3.1.0
   # 加解密,主要的rsa,aes都有
   encrypt: ^3.2.0
+  # 各种加密解密,例如MD5等
   crypto: ^2.1.1+1
 
 dev_dependencies:

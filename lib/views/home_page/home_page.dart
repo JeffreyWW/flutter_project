@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State {
   void clickTest() {}
   final FoodBloc _foodBloc = FoodBloc();
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -102,7 +103,10 @@ class _HomePageState extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             descriptionElements("秒级到账", "assets/icon_shak.png"),
-            descriptionElements("极速审批", "assets/icon_money.png"),
+            Builder(builder: (BuildContext context) {
+              return Text("Jeff");
+
+            },)
           ],
         );
       }

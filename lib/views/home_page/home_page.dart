@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
 import 'package:flutter_project/utils/color.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -284,6 +285,28 @@ class _HomePageState extends State {
                       if (index == 0) {
                         return _headerView(context);
                       }
+                      if (index == 1) {
+                        return Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                height: 36,
+                                width: 36,
+                                child: Image.network(
+                                    "http://103.238.145.134:20086/byapp/group1/M01/00/32/CqIBNV04P-aAM38UAAAIyQvawPI375.png"),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: _messageView(context),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+
                       return Text('text');
                     },
                   ),
@@ -292,4 +315,34 @@ class _HomePageState extends State {
               );
             }));
   }
+}
+
+Widget _messageView(BuildContext context) {
+  return Container(
+    ///容器高度必须是确定的
+    height: 55,
+
+    ///实际上里面还有容器,这里设置没办法对其里面的元素
+//    alignment: Alignment.centerRight,
+    child: Swiper(
+      autoplay: true,
+      scrollDirection: Axis.vertical,
+      itemCount: 3,
+      itemBuilder: (BuildContext context, int index) {
+        ///所有布局在里面完成
+        return Container(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Text(
+                '消费者保护宣传条例宣传条例宣传条例宣传条例传条例宣传条例传条例宣传条例',
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                softWrap: false,
+                style: TextStyle(fontSize: 14, color: HexColor("#333333")),
+              ),
+            ));
+      },
+    ),
+  );
 }

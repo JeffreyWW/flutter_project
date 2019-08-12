@@ -183,7 +183,7 @@ class _HomePageState extends State {
           )
         ],
       ),
-      height: 400,
+//      height: 400,
     );
   }
 
@@ -284,14 +284,7 @@ class _HomePageState extends State {
                       if (index == 0) {
                         return _headerView(context);
                       }
-                      return Align(child: Container(
-                        color: Colors.blue,
-                          child: Row(
-                            children: <Widget>[
-                              Text('text'),
-                            ],
-                          )),);
-
+                      return Text('text');
                     },
                   ),
                   SafeArea(child: navigationBar())

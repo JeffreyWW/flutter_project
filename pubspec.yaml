@@ -37,6 +37,8 @@ dependencies:
   encrypt: ^3.2.0
   # 各种加密解密,例如MD5等
   crypto: ^2.1.1+1
+  # 循环视图
+  flutter_swiper : ^1.1.6
 
 dev_dependencies:
   flutter_test:

@@ -35,37 +35,37 @@ class _HomePageState extends State {
     super.dispose();
   }
 
+  Widget navigationBar() {
+    return Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        height: 44,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: ImageIcon(
+                AssetImage("assets/nav_listen.png"),
+                color: Colors.white,
+              ),
+              onPressed: () {
+                print("点击");
+              },
+            ),
+            IconButton(
+              icon: ImageIcon(
+                AssetImage("assets/nav_message.png"),
+                color: Colors.white,
+              ),
+              onPressed: () {
+                print("点击2");
+              },
+            ),
+          ],
+        ));
+  }
+
   ///头部
   Widget _headerView(BuildContext context) {
-    Widget navigationBar() {
-      return Container(
-          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-          height: 44,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                icon: ImageIcon(
-                  AssetImage("assets/nav_listen.png"),
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  print("点击");
-                },
-              ),
-              IconButton(
-                icon: ImageIcon(
-                  AssetImage("assets/nav_message.png"),
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  print("点击2");
-                },
-              ),
-            ],
-          ));
-    }
-
     Widget card(BuildContext context) {
       Widget number() {
         return Center(
@@ -130,7 +130,6 @@ class _HomePageState extends State {
           elevation: 2,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(12))),
-//        margin: EdgeInsets.all(15),
           child: Column(
             children: <Widget>[
               Padding(
@@ -157,39 +156,13 @@ class _HomePageState extends State {
     return Container(
       child: Stack(
         children: <Widget>[
-          StreamBuilder<double>(
-            initialData: 0,
-            stream: streamController.stream,
-            builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
-              var scale = 1.0;
-
-              ///偏移距离
-              var distance = -snapshot.data;
-
-              ///实际高度
-              var realHeight = 375.0 * 948.0 / 1125.0;
-
-              ///放大后应该是上下都增加了移动的距离,放大倍数则除以原始高度即可,反向则置为1
-              scale =
-                  distance > 0 ? (realHeight + 2 * distance) / realHeight : 1;
-              return Positioned(
-                  left: 0,
-                  right: 0,
-                  child: Transform.scale(
-                    scale: scale,
-                    child: Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/bg_home_headerA.png')),
-                  ));
-            },
-          ),
+          headImageView(),
           SafeArea(
             child: Column(
 //          mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                navigationBar(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 64),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -215,10 +188,34 @@ class _HomePageState extends State {
         ],
       ),
       height: 400,
-//      decoration: BoxDecoration(
-//          image: DecorationImage(
-//              image: AssetImage("assets/bg_home_headerA.png"),
-//              fit: BoxFit.cover)),
+    );
+  }
+
+  StreamBuilder<double> headImageView() {
+    return StreamBuilder<double>(
+      initialData: 0,
+      stream: streamController.stream,
+      builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+        var scale = 1.0;
+
+        ///偏移距离
+        var distance = -snapshot.data;
+
+        ///实际高度
+        var realHeight = 375.0 * 948.0 / 1125.0;
+
+        ///放大后应该是上下都增加了移动的距离,放大倍数则除以原始高度即可,反向则置为1
+        scale = distance > 0 ? (realHeight + 2 * distance) / realHeight : 1;
+        return Positioned(
+            left: 0,
+            right: 0,
+            child: Transform.scale(
+              scale: scale,
+              child: Image(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/bg_home_headerA.png')),
+            ));
+      },
     );
   }
 
@@ -278,18 +275,31 @@ class _HomePageState extends State {
         body: BlocBuilder(
             bloc: _foodBloc,
             builder: (BuildContext context, FoodState state) {
-              return ListView.builder(
-                controller: scrollController,
-                physics: AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.only(top: 0),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == 0) {
-                    return _headerView(context);
-                  }
+              return Stack(
+                children: <Widget>[
+                  ListView.builder(
+                    controller: scrollController,
+                    physics: AlwaysScrollableScrollPhysics(),
 
-                  return Text("Jeff");
-                },
+                    ///默认会把导航距离移除,为0则可以顶着头部了
+                    padding: EdgeInsets.only(top: 0),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == 0) {
+                        return _headerView(context);
+                      }
+                      return Align(child: Container(
+                        color: Colors.blue,
+                          child: Row(
+                            children: <Widget>[
+                              Text('text'),
+                            ],
+                          )),);
+
+                    },
+                  ),
+                  SafeArea(child: navigationBar())
+                ],
               );
             }));
   }

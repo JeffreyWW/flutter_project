@@ -27,8 +27,8 @@ dependencies:
   # rx系列
   rxdart: ^0.22.2
   # business logic 新的设计模式
-  bloc: ^0.14.4
-  flutter_bloc: ^0.20.0
+  bloc: ^0.15.0
+  flutter_bloc: ^0.21.0
   # flutter的AFN
   dio: ^2.1.16
   # 一个建议的toast控件,但内部好像是用了原生代码,弄的插件形式

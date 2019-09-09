@@ -38,13 +38,6 @@ class TestBloc extends Bloc<String, int> {
     yield currentState + 1;
   }
 
-  ///transform是一个 在调用mapEventToState之前 可以重写以转换 Stream<Event> .
-  ///这允许使用distinct() 和 debounce() 的操作,个人感觉有点想flapMap
-  @override
-  Stream<int> transform(Stream<String> events, Stream<int> next(String event)) {
-    return super.transform(events, next);
-  }
-
   ///onTransition 是一个 每次 transform 发生时都可以重写以进行处理 的方法。
   ///调度新event 并调用mapEventToState时发生transition。
   ///onTransition 在更新 bloc 状态之前 被调用。

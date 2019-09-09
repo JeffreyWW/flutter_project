@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -10,7 +7,6 @@ class MyPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-
     return _MyPageState();
   }
 }
@@ -52,14 +48,21 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
       body: Center(
           child: FlatButton(
         child: Text("clicMe"),
-        onPressed: () {
+        onPressed: () async {
+//          var res = await NetworkManager.request("MC0011",
+//              bodyBody: {"userNo": "", "pageType": "00"});
+//          print("res is ");
+          NetworkManager.observable('MC0011',
+              bodyBody: {"userNo": "", "pageType": "00"});
 
-          NetworkManager.post("/MC0011.do",
-              data: {"userNo": "", "pageType": "00"}).listen((res) {
-            print(res.data["body"]["body"]);
-          }, onError: (e) {
-            print(e);
-          });
+//          print(res);
+
+//          NetworkManager.post("/MC0011.do",
+//              data: {"userNo": "", "pageType": "00"}).listen((res) {
+//            print(res.data["body"]["body"]);
+//          }, onError: (e) {
+//            print(e);
+//          });
         },
       )),
     );

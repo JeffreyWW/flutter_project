@@ -18,9 +18,15 @@ class NetworkManager {
         onResponse: NetworkInterceptors.onResponse,
         onError: NetworkInterceptors.onError));
 
-  static Future request(String optionType, {Map bodyBody}) {
+  static Observable<Map> observable(String optionType, {Map bodyBody}) =>
+      Observable.fromFuture(
+          NetworkManager.request(optionType, bodyBody: bodyBody));
+
+  static Future<Map> request(String optionType, {Map bodyBody}) {
     var path = '/' + optionType + '.do';
-    return _dio.post(path, data: bodyBody);
+    return _dio.post(path, data: bodyBody).then((res) {
+      return Future.value(res.data["body"]["body"]);
+    });
   }
 
   ///请求依靠dio,但会转为Observable

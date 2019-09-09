@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_project/repositoies/floor.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -44,38 +45,30 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    bool _save = true;
+
     return Scaffold(
-      body: Center(
-          child: FlatButton(
-        child: Text("clicMe"),
-        onPressed: ()  {
-
-//          var res = await NetworkManager.request("MC0011",
-//              bodyBody: {"userNo": "", "pageType": "00"});
-//          print("res is ");
-        FloorRepositories.getHomeFloor().listen((data){
-          print("");
-
-        });
-
-//          NetworkManager.observable('MC0011',
-//              bodyBody: {"userNo": "", "pageType": "00"}).listen((data){
-//                print("object");
-//                Floor floor = Floor.fromJsonMap(data);
-//                print("object");
-//
-//          });
-
-//          print(res);
-
-//          NetworkManager.post("/MC0011.do",
-//              data: {"userNo": "", "pageType": "00"}).listen((res) {
-//            print(res.data["body"]["body"]);
-//          }, onError: (e) {
-//            print(e);
-//          });
-        },
-      )),
+      body: ModalProgressHUD(
+        child: Center(
+            child: FlatButton(
+          child: Text("clicMe"),
+          onPressed: () {
+            _save = false;
+            FloorRepositories.getHomeFloor().listen((data) {
+              print("");
+            });
+          },
+        )),
+        inAsyncCall: _save,
+        opacity: 0.1,
+//        color: Colors.blue,
+//        offset: Offset(2, 3),
+        dismissible: true,
+        progressIndicator: Container(
+          color: Colors.black,
+            child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.red))),
+      ),
     );
   }
 }

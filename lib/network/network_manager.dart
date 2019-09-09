@@ -18,11 +18,12 @@ class NetworkManager {
         onResponse: NetworkInterceptors.onResponse,
         onError: NetworkInterceptors.onError));
 
-  static Observable<Map> observable(String optionType, {Map bodyBody}) =>
+  static Observable<Map<String, dynamic>> observable(String optionType,
+          {Map<String, dynamic> bodyBody}) =>
       Observable.fromFuture(
           NetworkManager.request(optionType, bodyBody: bodyBody));
 
-  static Future<Map> request(String optionType, {Map bodyBody}) {
+  static Future<Map<String, dynamic>> request(String optionType, {Map<String, dynamic> bodyBody}) {
     var path = '/' + optionType + '.do';
     return _dio.post(path, data: bodyBody).then((res) {
       return Future.value(res.data["body"]["body"]);

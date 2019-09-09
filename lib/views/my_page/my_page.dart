@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_project/network/index.dart';
+import 'package:flutter_project/repositoies/floor.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -48,12 +48,23 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
       body: Center(
           child: FlatButton(
         child: Text("clicMe"),
-        onPressed: () async {
+        onPressed: ()  {
+
 //          var res = await NetworkManager.request("MC0011",
 //              bodyBody: {"userNo": "", "pageType": "00"});
 //          print("res is ");
-          NetworkManager.observable('MC0011',
-              bodyBody: {"userNo": "", "pageType": "00"});
+        FloorRepositories.getHomeFloor().listen((data){
+          print("");
+
+        });
+
+//          NetworkManager.observable('MC0011',
+//              bodyBody: {"userNo": "", "pageType": "00"}).listen((data){
+//                print("object");
+//                Floor floor = Floor.fromJsonMap(data);
+//                print("object");
+//
+//          });
 
 //          print(res);
 

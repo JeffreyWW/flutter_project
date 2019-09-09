@@ -53,6 +53,7 @@ class _MyPageState extends State with SingleTickerProviderStateMixin {
           child: FlatButton(
         child: Text("clicMe"),
         onPressed: () {
+
           NetworkManager.post("/MC0011.do",
               data: {"userNo": "", "pageType": "00"}).listen((res) {
             print(res.data["body"]["body"]);

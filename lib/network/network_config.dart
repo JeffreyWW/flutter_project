@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
+///统一配置,主要是头部,请求时间等配置
+
 ///常规配置
 class NetworkConfig {
   ///域名

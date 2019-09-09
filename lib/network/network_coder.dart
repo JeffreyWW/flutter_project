@@ -21,7 +21,7 @@ class NetworkCoder {
   static final IV _aesIV = IV(utf8.encode("1269571569321021"));
 
   ///数据header
-  static get _dataHeader => {
+  static get _bodyHeader => {
         "appVersion": "2.1.4",
         "netWorkTypse": "WIFI",
         "ipAddress": "fe80::9e:fe6b:15da:a1ca",
@@ -44,15 +44,18 @@ class NetworkCoder {
     ///请求时间
     var requestTime = DateTime.now().millisecondsSinceEpoch.toString();
 
-    ///httpBody里面的header字段
-    var httpBodyHeader = {"channel": "AT", "requestTime": requestTime};
-
-    ///本地数据包含头部和body,body其实是我们需要参数
-    var localData = {"header": _dataHeader, "body": options.data};
+    ///参数里面的header
+    var parametersHeader = {"channel": "AT", "requestTime": requestTime};
+    ///body的头部
+    var bodyHeader = _bodyHeader;
+    ///外部传入的参数当做最终内部的数据
+    var bodyBody = options.data;
+    ///参数里有header和body,参数的body没加密,但是里面的encryptVal的字段是加密了的,下面的值就是未加密的值
+    var bodyData = {"header": bodyHeader, "body": bodyBody};
 
     ///数据的jsonString+channel+requestTime,然后md5转小写,最后base64
     var sign = Encrypted.fromUtf8(md5
-            .convert(utf8.encode(json.encode(localData) + "AT" + requestTime))
+            .convert(utf8.encode(json.encode(bodyData) + "AT" + requestTime))
             .toString()
             .toLowerCase())
         .base64;
@@ -64,17 +67,19 @@ class NetworkCoder {
     ///把key通过rsa加密并转成base64给后台,后台会有私有去解密得到aes的key
     var encryptKey = _rsaEncrypter.encrypt(aesKey).base64;
 
-    ///最后本地数据需要经过aes加密,aes加密目前没有问题,iv则是固定值,最后转成base64字符串
-    var encryptVal = AES(Key(utf8.encode(aesKey)), mode: AESMode.cbc)
-        .encrypt(utf8.encode(json.encode(localData)), iv: _aesIV)
+    ///最后bodyBody数据需要经过aes加密,aes加密目前没有问题,iv则是固定值,最后转成base64字符串
+    var bodyDataEncryptVal = AES(Key(utf8.encode(aesKey)), mode: AESMode.cbc)
+        .encrypt(utf8.encode(json.encode(bodyData)), iv: _aesIV)
         .base64;
-    var httpBodyBody = {
+    var parametersBody = {
       "sign": sign,
       "encryptKey": encryptKey,
-      "encryptVal": encryptVal
+      "encryptVal": bodyDataEncryptVal
     };
-    var httpBody = {"header": httpBodyHeader, "body": httpBodyBody};
-    return JsonUtf8Encoder().convert(httpBody);
+
+    ///最终参数与
+    var parameters = {"header": parametersHeader, "body": parametersBody};
+    return JsonUtf8Encoder().convert(parameters);
   }
 
   static String responseDecoder(List<int> responseBytes, RequestOptions options,

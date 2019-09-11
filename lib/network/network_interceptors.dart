@@ -10,8 +10,9 @@ class NetworkInterceptors {
     var gateWayErrorMsg = gateWayHeader["errorMsg"];
 
     ///header的code不是0,直接报错网关错误码和信息
-    if (gateWayErrorCode == "0") {
-      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, gateWayErrorMsg);
+    if (gateWayErrorCode != "0") {
+//      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, gateWayErrorMsg);
+      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, "参数异常,请稍后再试");
     }
 
     var gateWayBody = response.data["body"];

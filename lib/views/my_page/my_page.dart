@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/floor/floor_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class MyPage extends StatefulWidget {
@@ -37,8 +38,10 @@ class _MyPageState extends State {
                 _isLoading = false;
                 _txt = state.floor.floorInfoList.first.floorId;
               }
-              if(state  is FloorFailState) {
+              if (state is FloorFailState) {
                 _isLoading = false;
+                Fluttertoast.showToast(
+                    msg: "参数异常,稍后再试", gravity: ToastGravity.CENTER);
               }
 
               return ModalProgressHUD(

@@ -46,10 +46,13 @@ class NetworkCoder {
 
     ///参数里面的header
     var parametersHeader = {"channel": "AT", "requestTime": requestTime};
+
     ///body的头部
     var bodyHeader = _bodyHeader;
+
     ///外部传入的参数当做最终内部的数据
     var bodyBody = options.data;
+
     ///参数里有header和body,参数的body没加密,但是里面的encryptVal的字段是加密了的,下面的值就是未加密的值
     var bodyData = {"header": bodyHeader, "body": bodyBody};
 
@@ -84,11 +87,18 @@ class NetworkCoder {
 
   static String responseDecoder(List<int> responseBytes, RequestOptions options,
       ResponseBody responseBody) {
+
+    var responseString = utf8.decode(responseBytes);
+
     ///返回的json
-    var gateWayResponse = json.decode(utf8.decode(responseBytes));
+    var gateWayResponse = json.decode(responseString);
 
     ///网关的header,包含errorCode和errorMsg
     var gateWayHeader = gateWayResponse["header"];
+    if (gateWayHeader == null) {
+      return responseString;
+    }
+
     var gateWayBody = gateWayResponse["body"];
 
     ///返回的body里面去出X-Flame-Encrypt字段,用;隔开取后段,再去key=后端,拿到base64的一个字符串,还原,得到加密后的aesKey
@@ -126,4 +136,4 @@ class NetworkCoder {
   }
 }
 
-class CustomError implements Exception {}
+

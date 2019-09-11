@@ -18,25 +18,18 @@ class NetworkManager {
         onResponse: NetworkInterceptors.onResponse,
         onError: NetworkInterceptors.onError));
 
+  ///请求转rx
   static Observable<Map<String, dynamic>> observable(String optionType,
           {Map<String, dynamic> bodyBody}) =>
       Observable.fromFuture(
           NetworkManager.request(optionType, bodyBody: bodyBody));
 
-  static Future<Map<String, dynamic>> request(String optionType, {Map<String, dynamic> bodyBody}) {
+  ///请求,最后返回的是body.body
+  static Future<Map<String, dynamic>> request(String optionType,
+      {Map<String, dynamic> bodyBody}) {
     var path = '/' + optionType + '.do';
     return _dio.post(path, data: bodyBody).then((res) {
-      return Future.value(res.data["body"]["body"]);
+      return Future.value(res.data);
     });
-  }
-
-  ///请求依靠dio,但会转为Observable
-  static Observable<Response<T>> get<T>(String path) {
-    return Observable.fromFuture(_dio.get(path));
-  }
-
-  ///请求依靠dio,但会转为Observable
-  static Observable<Response<T>> post<T>(String path, {data}) {
-    return Observable.fromFuture(_dio.post(path, data: data));
   }
 }

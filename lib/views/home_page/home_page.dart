@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -102,7 +101,6 @@ class _HomePageState extends State {
                 color: Colors.white,
               ),
               onPressed: () {
-                print("点击");
               },
             ),
             IconButton(
@@ -111,7 +109,6 @@ class _HomePageState extends State {
                 color: Colors.white,
               ),
               onPressed: () {
-                print("点击2");
               },
             ),
           ],
@@ -155,7 +152,6 @@ class _HomePageState extends State {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {
-                  print("1");
                 },
                 child: Text(
                   "去还款",

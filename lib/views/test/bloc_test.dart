@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/AppBloc.dart';
-import 'package:flutter_project/network/network_manager.dart';
-import 'package:rxdart/rxdart.dart';
 
 ///函数返回流,一旦监听,里面的值就发送,yield相当于发送
 Stream<int> asyncTest() async* {
@@ -66,7 +64,6 @@ class _BlocPageState extends State {
 
   void clickTest() {
 
-    Observable.concat([NetworkManager.get("1")]);
 
   }
 

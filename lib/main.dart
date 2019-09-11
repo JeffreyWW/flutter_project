@@ -8,7 +8,6 @@ import 'package:flutter_project/views/index.dart';
 
 void main() async {
   await NetworkManager.configure();
-  print("start");
   runApp(BlocProvider(
     builder: (context) => Application.bloc,
     child: JFApp(),

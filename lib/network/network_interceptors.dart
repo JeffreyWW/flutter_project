@@ -11,8 +11,7 @@ class NetworkInterceptors {
 
     ///header的code不是0,直接报错网关错误码和信息
     if (gateWayErrorCode != "0") {
-//      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, gateWayErrorMsg);
-      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, "参数异常,请稍后再试");
+      throw BOBError(BOBErrorType.gateWay, gateWayErrorCode, gateWayErrorMsg);
     }
 
     var gateWayBody = response.data["body"];
@@ -21,7 +20,7 @@ class NetworkInterceptors {
     var apiErrorMsg = apiHeader["errorMsg"];
 
     ///里层的header的code不是0,直接报api错误码和信息
-    if (apiErrorCode == "0") {
+    if (apiErrorCode != "0") {
       throw BOBError(BOBErrorType.api, apiErrorCode, apiErrorMsg);
     }
 

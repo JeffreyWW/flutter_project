@@ -1,11 +1,13 @@
 import 'dart:async';
-
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project/application.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
+import 'package:flutter_project/routers/routes.dart';
 import 'package:flutter_project/utils/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -103,16 +105,14 @@ class _HomePageState extends State {
                 AssetImage("assets/nav_listen.png"),
                 color: Colors.white,
               ),
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: ImageIcon(
                 AssetImage("assets/nav_message.png"),
                 color: Colors.white,
               ),
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
           ],
         ));
@@ -155,6 +155,8 @@ class _HomePageState extends State {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {
+                  Application.router.navigateTo(context, "login",
+                      transition: TransitionType.material);
                 },
                 child: Text(
                   "去还款",
@@ -320,6 +322,7 @@ class _HomePageState extends State {
       ),
     );
   }
+
   Widget _messageView(BuildContext context) {
     return Container(
       ///容器高度必须是确定的
@@ -349,6 +352,4 @@ class _HomePageState extends State {
       ),
     );
   }
-
 }
-

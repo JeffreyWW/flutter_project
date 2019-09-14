@@ -42,6 +42,18 @@ class _JFAppState extends State<JFApp> {
     return MaterialApp(
 //      title: "我的",
       theme: ThemeData(
+        canvasColor: Colors.white,
+        appBarTheme: AppBarTheme(
+            elevation: 0,
+            color: Colors.white,
+            brightness: Brightness.light,
+            iconTheme: IconThemeData(color: Colors.black),
+            textTheme: TextTheme(
+                title: TextStyle(
+                    color: Colors.black,
+                    fontSize: ScreenUtil().setWidth(34),
+                    fontWeight: FontWeight.w500))),
+
         ///文字主题
         textTheme: TextTheme(
             title: TextStyle(color: Colors.white, fontSize: 24),

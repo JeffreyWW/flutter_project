@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/food/bloc.dart';
 import 'package:flutter_project/utils/color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,6 +38,8 @@ class _HomePageState extends State {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     return new Scaffold(

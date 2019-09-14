@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
 import 'package:flutter_project/network/index.dart';
 import 'package:flutter_project/views/index.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:native_info/native_info.dart';
 
 void main() async {

@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_project/network/network_public_info.dart';
 
 class NetworkCoder {
   ///rsa加密器
@@ -20,26 +21,6 @@ class NetworkCoder {
   ///AES的偏移
   static final IV _aesIV = IV(utf8.encode("1269571569321021"));
 
-  ///数据header
-  static get _bodyHeader => {
-        "appVersion": "2.1.4",
-        "netWorkTypse": "WIFI",
-        "ipAddress": "fe80::9e:fe6b:15da:a1ca",
-        "mobileType": "iPhoneSimulator",
-        "deviceId": "4A9C4BFC7513AD9D7EE0C27E93F951E1",
-        "sysVersion": "12.2",
-        "resolution": "1242*2208",
-        "platform": "iPhone",
-        "channel": "10001003",
-        "locationInfo": {},
-        "iCIFID": "ynet",
-        "mp_sId": "ynet",
-        "userId": "",
-        "device_id": "ynet",
-        "fingerprint": "",
-        "channelNo": "1",
-      };
-
   static List<int> requestEncoder(String request, RequestOptions options) {
     ///请求时间
     var requestTime = DateTime.now().millisecondsSinceEpoch.toString();
@@ -48,7 +29,7 @@ class NetworkCoder {
     var parametersHeader = {"channel": "AT", "requestTime": requestTime};
 
     ///body的头部
-    var bodyHeader = _bodyHeader;
+    var bodyHeader = NetworkPublicInfo.info;
 
     ///外部传入的参数当做最终内部的数据
     var bodyBody = options.data;
@@ -87,7 +68,6 @@ class NetworkCoder {
 
   static String responseDecoder(List<int> responseBytes, RequestOptions options,
       ResponseBody responseBody) {
-
     var responseString = utf8.decode(responseBytes);
 
     ///返回的json
@@ -135,5 +115,3 @@ class NetworkCoder {
     return json.encode(finalResponse);
   }
 }
-
-

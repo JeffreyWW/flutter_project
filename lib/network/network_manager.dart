@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_project/network/network_coder.dart';
 import 'package:flutter_project/network/network_interceptors.dart';
+import 'package:flutter_project/network/network_public_info.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'network_config.dart';
@@ -28,8 +29,8 @@ class NetworkManager {
   static Future<Map<String, dynamic>> request(String optionType,
       {Map<String, dynamic> bodyBody}) {
     var path = '/' + optionType + '.do';
-    return _dio.post(path, data: bodyBody).then((res) {
-      return Future.value(res.data);
-    });
+    return NetworkPublicInfo.updateInfo()
+        .then((r) => _dio.post(path, data: bodyBody))
+        .then((res) => Future.value(res.data));
   }
 }

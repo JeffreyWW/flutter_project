@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter_project/utils/native_info.dart';
+import 'package:native_info/native_info.dart';
+
 
 class NetworkPublicInfo {
   static Map<String, dynamic> get info => _info;

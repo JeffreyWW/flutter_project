@@ -4,14 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/application.dart';
 import 'package:flutter_project/network/index.dart';
-import 'package:flutter_project/utils/native_info.dart';
 import 'package:flutter_project/views/index.dart';
-import 'dart:ui' as ui;
+import 'package:native_info/native_info.dart';
 
 void main() async {
   await NetworkManager.configure();
   await NativeInfo.configure();
-  var rNmae = ui.window.defaultRouteName;
   runApp(BlocProvider(
     builder: (context) => Application.bloc,
     child: JFApp(),

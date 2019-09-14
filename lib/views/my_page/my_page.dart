@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/blocs/floor/floor_bloc.dart';
-import 'package:flutter_project/utils/native_info.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:st_scan_face/st_scan_face.dart';
 
 class MyPage extends StatefulWidget {
   @override

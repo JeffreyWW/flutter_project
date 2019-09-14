@@ -86,7 +86,7 @@ packages:
     source: hosted
     version: "0.1.2"
   device_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: device_info
       url: "https://pub.flutter-io.cn"
@@ -172,8 +172,17 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.3"
-  package_info:
+  native_info:
     dependency: "direct main"
+    description:
+      path: "."
+      ref: "v0.1"
+      resolved-ref: fb681a68a5b10ba4aa2a6a25e70229f0379df338
+      url: "https://github.com/JeffreyWW/native_info.git"
+    source: git
+    version: "0.0.1"
+  package_info:
+    dependency: transitive
     description:
       name: package_info
       url: "https://pub.flutter-io.cn"

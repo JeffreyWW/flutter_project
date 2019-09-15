@@ -51,7 +51,7 @@ class _JFAppState extends State<JFApp> {
             textTheme: TextTheme(
                 title: TextStyle(
                     color: Colors.black,
-                    fontSize: ScreenUtil().setWidth(34),
+                    fontSize: 17,
                     fontWeight: FontWeight.w500))),
 
         ///文字主题

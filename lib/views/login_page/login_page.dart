@@ -14,14 +14,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('手机短信登陆'),
-      ),
       body: Column(
         children: <Widget>[
-          phoneRow(),
-          line(),
-          codeRow(),
+          Container(
+            width: ScreenUtil().width,
+            child: Image(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/bg_login_header.png'),
+            ),
+          )
         ],
       ),
     );

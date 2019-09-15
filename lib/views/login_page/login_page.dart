@@ -15,24 +15,59 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          _header(context),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(55, 30, 55, 0),
-            child: TextField(
-              decoration: InputDecoration(
-                  prefixIcon: Padding(
-                    ///默认是有边距的,这里可以设置
-                    padding: const EdgeInsets.only(right: 33),
-                    child: Icon(Icons.phone),
-                  ),
-                  hintText: "请输入手机号",
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 0.5))),
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          children: <Widget>[
+            _header(context),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(55, 30, 55, 0),
+              child: _phoneText(),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(55, 11, 55, 0),
+              child: TextField(
+                decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      ///默认是有边距的,这里可以设置
+                      padding: const EdgeInsets.only(right: 33),
+                      child: Image(
+                        width: 27,
+                        height: 27,
+                        image: AssetImage("assets/login_pwd.png"),
+                      ),
+                    ),
+                    hintText: "请输入密码",
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red, width: 0.5))),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _phoneText() {
+    return Container(
+      child: TextField(
+        decoration: InputDecoration(
+//            contentPadding:EdgeInsets.only(top: 55),
+            prefixIcon: Padding(
+              ///默认是有边距的,这里可以设置
+              padding: const EdgeInsets.only(right: 33),
+              child: Image(
+                width: 27,
+                height: 27,
+                image: AssetImage("assets/login_phone.png"),
+              ),
+            ),
+            hintText: "请输入手机号",
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 0.5))),
       ),
     );
   }

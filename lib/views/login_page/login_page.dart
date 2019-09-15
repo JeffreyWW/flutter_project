@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             hintText: "请输入手机号",
             enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 0.5))),
+                borderSide: BorderSide(color: HexColor("#E6E6E6"), width: 0.5))),
       ),
     );
   }
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           hintText: "请输入密码",
           enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.red, width: 0.5))),
+              borderSide: BorderSide(color: HexColor("#E6E6E6"), width: 0.5))),
     );
   }
 

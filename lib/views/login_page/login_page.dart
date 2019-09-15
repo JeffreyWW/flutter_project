@@ -48,7 +48,10 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(top: 25),
               child: _btnLogin(context),
             ),
-            _otherButtons()
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: _otherButtons(context),
+            )
           ],
         ),
       ),
@@ -194,29 +197,41 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Row _otherButtons() {
+  Row _otherButtons(BuildContext context) {
+    _verticalDivider() {
+      return Container(
+          height: ScreenUtil().setHeight(30),
+          child: VerticalDivider(
+            width: 1,
+            color: HexColor("#E6E6E6"),
+          ));
+    }
+
+    _singleButton(String clickName) {
+      return FlatButton(
+        onPressed: () {
+          print("点击了" + "$clickName" + "按钮");
+        },
+        child: Text(clickName),
+      );
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-//              crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Expanded(
-          child: Text(
-            'text',
-            textAlign: TextAlign.center,
+        Container(
+          child: Expanded(
+            flex: 1,
+            child: _singleButton("立即注册"),
           ),
         ),
-        Text('11'),
+        _verticalDivider(),
         Expanded(
-            child: Text(
-          'text',
-          textAlign: TextAlign.center,
-        )),
-        Text('11'),
+          child: _singleButton("更换手机号"),
+        ),
+        _verticalDivider(),
         Expanded(
-          child: Text(
-            'text',
-            textAlign: TextAlign.center,
-          ),
+          child: _singleButton("忘记密码"),
         ),
       ],
     );

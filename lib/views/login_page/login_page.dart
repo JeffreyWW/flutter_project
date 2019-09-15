@@ -26,49 +26,14 @@ class _LoginPageState extends State<LoginPage> {
             _header(context),
             Padding(
               padding: const EdgeInsets.fromLTRB(55, 30, 55, 0),
-              child: _phoneText(),
+              child: _phoneTextField(),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(55, 11, 55, 0),
-              child: TextField(
-                decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      ///默认是有边距的,这里可以设置
-                      padding: const EdgeInsets.only(right: 33),
-                      child: Image(
-                        width: 27,
-                        height: 27,
-                        image: AssetImage("assets/login_pwd.png"),
-                      ),
-                    ),
-                    hintText: "请输入密码",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red, width: 0.5))),
-              ),
+              child: _codeTextField(),
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _phoneText() {
-    return Container(
-      child: TextField(
-        decoration: InputDecoration(
-//            contentPadding:EdgeInsets.only(top: 55),
-            prefixIcon: Padding(
-              ///默认是有边距的,这里可以设置
-              padding: const EdgeInsets.only(right: 33),
-              child: Image(
-                width: 27,
-                height: 27,
-                image: AssetImage("assets/login_phone.png"),
-              ),
-            ),
-            hintText: "请输入手机号",
-            enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 0.5))),
       ),
     );
   }
@@ -126,75 +91,42 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget phoneRow() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 43, 0),
-      child: Row(
-        children: <Widget>[
-//          Text('手机号'),
-          Expanded(
-            flex: 1,
-            child: TextField(
-              keyboardType: TextInputType.phone,
-              maxLength: 11,
-              decoration: InputDecoration(
-                  hintText: "请输入手机号",
-                  border: InputBorder.none,
-                  counterText: ""),
+  Widget _phoneTextField() {
+    return Container(
+      child: TextField(
+        decoration: InputDecoration(
+//            contentPadding:EdgeInsets.only(top: 55),
+            prefixIcon: Padding(
+              ///默认是有边距的,这里可以设置
+              padding: const EdgeInsets.only(right: 33),
+              child: Image(
+                width: 27,
+                height: 27,
+                image: AssetImage("assets/login_phone.png"),
+              ),
             ),
-          )
-        ],
+            hintText: "请输入手机号",
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 0.5))),
       ),
     );
   }
 
-  Widget codeRow() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 43, 0),
-      child: Row(
-        children: <Widget>[
-//          Text('验证码'),
-          Expanded(
-//            flex: 1,
-            child: Container(
-              child: TextField(
-//              keyboardType: TextInputType.phone,
-//              maxLength: 11,
-                decoration: InputDecoration(
-//                  labelText: "fuck",
-                    hasFloatingPlaceholder: false,
-//                  isDense: true,
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 33),
-                      child: Align(
-                        widthFactor: 1,
-//                    width: 50,
-//                    color: Colors.black,
-                        child: Text(
-                          'asdfasdfsafsafsafds',
-                          style: TextStyle(
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
-
-//                  prefixText: "+86",
-                    labelStyle: TextStyle(color: Colors.red),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 1)),
-                    hintText: "请输入验证码",
-                    enabledBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.only(),
-                        borderSide: BorderSide(
-                          color: Colors.green,
-                          width: 0.5,
-                        ))),
-              ),
+  TextField _codeTextField() {
+    return TextField(
+      decoration: InputDecoration(
+          prefixIcon: Padding(
+            ///默认是有边距的,这里可以设置
+            padding: const EdgeInsets.only(right: 33),
+            child: Image(
+              width: 27,
+              height: 27,
+              image: AssetImage("assets/login_pwd.png"),
             ),
-          )
-        ],
-      ),
+          ),
+          hintText: "请输入密码",
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.red, width: 0.5))),
     );
   }
 

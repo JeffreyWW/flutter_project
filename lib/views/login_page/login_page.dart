@@ -47,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(top: 25),
               child: _btnLogin(context),
-            )
+            ),
+            _otherButtons()
           ],
         ),
       ),
@@ -190,6 +191,34 @@ class _LoginPageState extends State<LoginPage> {
           print("login");
         },
       ),
+    );
+  }
+
+  Row _otherButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+//              crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Expanded(
+          child: Text(
+            'text',
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Text('11'),
+        Expanded(
+            child: Text(
+          'text',
+          textAlign: TextAlign.center,
+        )),
+        Text('11'),
+        Expanded(
+          child: Text(
+            'text',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
     );
   }
 }

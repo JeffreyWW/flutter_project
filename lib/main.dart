@@ -11,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:native_info/native_info.dart';
 
 void main() async {
-
   await NetworkManager.configure();
   await NativeInfo.configure();
   runApp(BlocProvider(
@@ -46,6 +45,7 @@ class _JFAppState extends State<JFApp> {
 //      title: "我的",
       theme: ThemeData(
         canvasColor: Colors.white,
+//        buttonTheme: ButtonThemeData(layoutBehavior: ButtonBarLayoutBehavior.padded),
         appBarTheme: AppBarTheme(
             elevation: 0,
             color: Colors.white,

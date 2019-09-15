@@ -31,7 +31,16 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(55, 11, 55, 0),
               child: _codeTextField(),
-            )
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 55),
+                  child: Container(child: _btnSelect(context)),
+                ),
+                Text('fuckfuckfuckfuck')
+              ],
+            ),
           ],
         ),
       ),
@@ -51,7 +60,6 @@ class _LoginPageState extends State<LoginPage> {
         SafeArea(
           child: Column(
             children: <Widget>[
-              _btnSelect(context),
               Container(
                   alignment: Alignment.centerLeft,
                   height: ScreenUtil().setHeight(44),
@@ -132,8 +140,10 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _btnSelect(BuildContext context) {
     return StateIconButton(
+      iconSize: Size(22, 22),
       iconSet: {
         ButtonState.normal: Image(
+//          fit: BoxFit.cover,
           image: AssetImage("assets/btn_agreement.png"),
         ),
         ButtonState.selected: Image(
@@ -141,8 +151,13 @@ class _LoginPageState extends State<LoginPage> {
         )
       },
       onPress: (ButtonState state) {
-        print(state);
-        return ButtonState.selected;
+        switch (state) {
+          case ButtonState.normal:
+            return ButtonState.selected;
+          case ButtonState.selected:
+            return ButtonState.normal;
+        }
+        return ButtonState.normal;
       },
     );
   }

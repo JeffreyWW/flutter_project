@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:native_info/native_info.dart';
 
 void main() async {
+
   await NetworkManager.configure();
   await NativeInfo.configure();
   runApp(BlocProvider(

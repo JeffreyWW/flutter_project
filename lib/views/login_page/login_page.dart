@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/application.dart';
+import 'package:flutter_project/component/state_icon_button.dart';
 import 'package:flutter_project/utils/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -85,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
         SafeArea(
           child: Column(
             children: <Widget>[
+              _btnSelect(context),
               Container(
                   alignment: Alignment.centerLeft,
                   height: ScreenUtil().setHeight(44),
@@ -146,15 +148,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget line() {
-    return Divider(
-      height: 1,
-      color: HexColor("#E6E6E6"),
-      indent: 16,
-      endIndent: 16,
-    );
-  }
-
   Widget codeRow() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 43, 0),
@@ -202,6 +195,23 @@ class _LoginPageState extends State<LoginPage> {
           )
         ],
       ),
+    );
+  }
+
+  Widget _btnSelect(BuildContext context) {
+    return StateIconButton(
+      iconSet: {
+        ButtonState.normal: Image(
+          image: AssetImage("assets/btn_agreement.png"),
+        ),
+        ButtonState.selected: Image(
+          image: AssetImage("assets/btn_agreement_selected.png"),
+        )
+      },
+      onPress: (ButtonState state) {
+        print(state);
+        return ButtonState.selected;
+      },
     );
   }
 }

@@ -32,15 +32,22 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.fromLTRB(55, 11, 55, 0),
               child: _codeTextField(),
             ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 55),
-                  child: Container(child: _btnSelect(context)),
-                ),
-                Text('fuckfuckfuckfuck')
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 55),
+                    child: Container(child: _btnSelect(context)),
+                  ),
+                  Text('fuckfuckfuckfuck')
+                ],
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: _btnLogin(context),
+            )
           ],
         ),
       ),
@@ -115,7 +122,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             hintText: "请输入手机号",
             enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: HexColor("#E6E6E6"), width: 0.5))),
+                borderSide:
+                    BorderSide(color: HexColor("#E6E6E6"), width: 0.5))),
       ),
     );
   }
@@ -159,6 +167,29 @@ class _LoginPageState extends State<LoginPage> {
         }
         return ButtonState.normal;
       },
+    );
+  }
+
+  Widget _btnLogin(BuildContext context) {
+    return Container(
+      width: ScreenUtil().setWidth(480),
+      height: ScreenUtil().setWidth(90),
+      decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.all(Radius.circular(ScreenUtil().setWidth(90))),
+          gradient: LinearGradient(
+              colors: [HexColor("#FF9B80"), HexColor("#FF0404")],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter)),
+      child: FlatButton(
+        child: Text(
+          '登陆',
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+        onPressed: () {
+          print("login");
+        },
+      ),
     );
   }
 }
